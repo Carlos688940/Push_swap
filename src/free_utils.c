@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 12:14:13 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 12:14:13 by carlaugu         ###   ########.fr       */
+/*   Created: 2025-01-25 18:02:46 by carlaugu          #+#    #+#             */
+/*   Updated: 2025-01-25 18:02:46 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+ 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+void	free_splt(char **av, int ac)
 {
-	t_node	*stk_a;
-	t_node	*stk_b;
+	int	i;
 
-	stk_a = NULL;
-	stk_b = NULL;
-	(void)stk_b;
-	(void)stk_a;
-	if (argc == 1 || !argv[1][0])
-		return (1);
-	argv = check_input(argv + 1, argc);
-	return (0);
+	i = 0;
+	if (ac == 2)
+	{
+		while (av[i])
+			free(av[i++]);
+		free (av);
+	}
 }

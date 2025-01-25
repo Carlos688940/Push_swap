@@ -5,7 +5,7 @@ RM = rm -f
 
 NAME = push_swap
 
-SRCS = src/main.c
+SRCS = src/main.c src/check_input.c src/free_utils.c src/utils.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libs/Libft/libft.a
 

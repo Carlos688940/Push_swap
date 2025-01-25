@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 12:14:13 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 12:14:13 by carlaugu         ###   ########.fr       */
+/*   Created: 2025-01-25 18:04:29 by carlaugu          #+#    #+#             */
+/*   Updated: 2025-01-25 18:04:29 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+long	ft_atol(char *str)
 {
-	t_node	*stk_a;
-	t_node	*stk_b;
+	long	result;
+	long	i;
+	int	sign;
 
-	stk_a = NULL;
-	stk_b = NULL;
-	(void)stk_b;
-	(void)stk_a;
-	if (argc == 1 || !argv[1][0])
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '+')
+		i++;
+	if (str[i] == '-')
+		sign = -sign;
+	while (ft_isdigit(str[i]))
+		result = result * 10 + (str[i++] - '0');
+	return (result * sign);
+}
+
+int	ft_is_signal(char c)
+{
+	if (c == '-' || c == '+')
 		return (1);
-	argv = check_input(argv + 1, argc);
 	return (0);
 }
