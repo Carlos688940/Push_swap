@@ -12,7 +12,7 @@
  
 #include "../include/push_swap.h"
 
-void	free_splt(char **av, int ac)
+void	free_splt(char **av, int ac, int check)
 {
 	int	i;
 
@@ -23,4 +23,19 @@ void	free_splt(char **av, int ac)
 			free(av[i++]);
 		free (av);
 	}
+	if (check)
+		print_error();
+}
+
+void	free_stack(t_stk_node *stk, char **av_val, int inpt_cnt, int i)
+{
+	t_stk_node	*box;
+
+	while (stk)
+	{
+		box = stk->next;
+		free (stk);
+		stk = box;
+	}
+	free_splt(av_val, inpt_cnt, i);
 }

@@ -12,12 +12,6 @@
 
 #include "../include/push_swap.h"
 
-static void	print_error(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(EXIT_FAILURE);
-}
-
 static int	check_sintax(char *str)
 {
 	while (*str)
@@ -39,23 +33,20 @@ static	int	check_int(char *str)
 	return (1);
 }
 
-static	int	check_duplicate(char **input_values, int input_count)
+static	int	check_duplicate(char **av_val, int inpt_cnt)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (input_values[j])
+	while (av_val[j])
 	{
 		i = j;
-		while (input_values[j] && input_values[i + 1])
+		while (av_val[j] && av_val[i + 1])
 		{
-			if (ft_atol(input_values[j]) == ft_atol(input_values [i + 1]))
-			{
-				free_splt(input_values, input_count);
-				print_error();
-			}
+			if (ft_atol(av_val[j]) == ft_atol(av_val [i + 1]))
+				free_splt(av_val, inpt_cnt, 1);
 			i++;
 		}
 		j++;
@@ -63,21 +54,18 @@ static	int	check_duplicate(char **input_values, int input_count)
 	return (0);
 }
 
-char	**check_input(char **argv_values, int input_count)
+char	**check_input(char **av_val, int inpt_cnt)
 {
 	int	i;
 
-	if (input_count == 2)
-		argv_values = ft_split(argv_values[0], ' ');
+	if (inpt_cnt == 2)
+		av_val = ft_split(av_val[0], ' ');
 	i = -1;
-	while (argv_values[++i])
+	while (av_val[++i])
 	{
-		if (!check_sintax(argv_values[i]) || !check_int(argv_values[i]))
-		{
-			free_splt(argv_values, input_count);
-			print_error();
-		}
+		if (!check_sintax(av_val[i]) || !check_int(av_val[i]))
+			free_splt(av_val, inpt_cnt, 1);
 	}
-	check_duplicate(argv_values, input_count);
-	return (argv_values);
+	check_duplicate(av_val, inpt_cnt);
+	return (av_val);
 }
