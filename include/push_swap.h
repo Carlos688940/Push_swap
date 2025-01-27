@@ -38,7 +38,7 @@ int	get_max(t_stk_node *stk);
 //----------- Stack_tools -------------
 t_stk_node	*stack_a_init(t_stk_node *stk_a, char **av_val, int inpt_cnt);
 int	sorted_list(t_stk_node *stk_a);
-int	count_stk(t_stk_node *stk);
+int	count_nodes(t_stk_node *stk);
 void	sort_three(t_stk_node *stk);
 //----------- Sort stack -------------
 void	sa(t_stk_node *stk);

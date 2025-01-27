@@ -26,9 +26,9 @@ int	main(int argc, char **argv)
 	stk_a = stack_a_init(stk_a, argv, argc);
 	if (!sorted_list(stk_a))
 	{
-		if (count_stk(stk_a) == 2)
+		if (count_nodes(stk_a) == 2)
 			sa(stk_a);
-		else if (count_stk(stk_a) == 3)
+		else if (count_nodes(stk_a) == 3)
 			sort_three(stk_a);
 	}
 	free_stack(stk_a, argv, argc, 0);

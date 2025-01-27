@@ -26,7 +26,7 @@ void	sort_three(t_stk_node *stk)
 	}
 }
 
-int	count_stk(t_stk_node *stk)
+int	count_nodes(t_stk_node *stk)
 {
 	int	count;
 
