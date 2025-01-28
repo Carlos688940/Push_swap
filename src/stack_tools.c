@@ -15,12 +15,14 @@
 void	sort_three(t_stk_node *stk)
 {
 	int	max;
+	t_stk_node	*sort;
 
+	(void)sort;
 	max = get_max(stk);
 	if (stk->value == max)
 	{
-		ra(stk);
-		sa(stk);
+		sort = ra(stk);
+		sort = sa(sort);
 	}
 	else if (stk->next->value == max)
 	{

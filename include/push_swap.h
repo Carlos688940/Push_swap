@@ -41,8 +41,8 @@ int	sorted_list(t_stk_node *stk_a);
 int	count_nodes(t_stk_node *stk);
 void	sort_three(t_stk_node *stk);
 //----------- Sort stack -------------
-void	sa(t_stk_node *stk);
-void	rra(t_stk_node *stk);
-void	ra(t_stk_node *stk);
+t_stk_node	*sa(t_stk_node *stk);
+t_stk_node	*rra(t_stk_node *stk);
+t_stk_node	*ra(t_stk_node *stk);
 
 #endif

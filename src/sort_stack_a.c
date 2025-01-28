@@ -12,6 +12,18 @@
 
 #include "../include/push_swap.h"
 
+void	define_index(t_stk_node *stk)
+{
+	int	i;
+
+	i = -1;
+	while (stk)
+	{
+		stk->index = ++i;
+		stk = stk->next;
+	}
+}
+
 int	get_last(t_stk_node *stk)
 {
 	int	n;
@@ -24,27 +36,30 @@ int	get_last(t_stk_node *stk)
 	return (n);
 }
 
-void	ra(t_stk_node *stk)
+t_stk_node	*ra(t_stk_node *stk)
 {
-	int	box;
-	int	box1;
+	t_stk_node	*box;
 	
-	box1 = stk->value;
+	box = stk;
 	while (stk)
 	{
 		if (!stk->next)
 		{
-			stk->value = box1;
+			box->next->previous = NULL;
+			stk->next = box; 
+			box->previous = stk->previous->next;
+			stk = stk->previous;
+			box->next = NULL;
 			break;
 		}
-		box = stk->next->value;
-		stk->value = box;
 		stk = stk->next;
 	}
+	define_index(stk);
 	ft_putstr_fd("ra\n", 1);
+	return (stk);
 }
 
-void	rra(t_stk_node *stk)
+t_stk_node	*rra(t_stk_node *stk)
 {
 	int	box;
 	int	box1;
@@ -58,18 +73,24 @@ void	rra(t_stk_node *stk)
 		stk = stk->next;
 	}
 	ft_putstr_fd("rra\n", 1);
+	return (stk);
 }
 
-void	sa(t_stk_node *stk)
+
+t_stk_node	*sa(t_stk_node *stk)
 {
-	int	box;
+	t_stk_node	*box;
 
 	if (stk->value > stk->next->value)
-	{	box = stk->value;
-		stk->value = stk->next->value;
-		stk->next->value = box;
+	{
+		box = stk->next;
+		stk->previous =  box;
+		stk->next = NULL;
+		box->next = stk;
+		box->previous = NULL;
+		stk = box;
+		define_index(stk);
+		ft_putstr_fd("sa\n", 1);
 	}
-	else
-		return ;
-	ft_putstr_fd("sa\n", 1);
+	return (stk);
 }
