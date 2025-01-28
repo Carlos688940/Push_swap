@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 18:08:10 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 18:08:10 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/01/25 18:08:10 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/01/28 14:18:00 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int	count_nodes(t_stk_node *stk);
 void	sort_three(t_stk_node *stk);
 //----------- Sort stack -------------
 void	sa(t_stk_node *stk);
+void	rra(t_stk_node *stk);
+void	ra(t_stk_node *stk);
 
 #endif

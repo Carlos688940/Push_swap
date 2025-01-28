@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_stack.c                                      :+:      :+:    :+:   */
+/*   stack_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-27 13:42:21 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-27 13:42:21 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/01/27 13:42:21 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/01/28 14:03:22 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ void	sort_three(t_stk_node *stk)
 {
 	int	max;
 
-	if (stk->value > stk->next->value)
-		sa(stk);
 	max = get_max(stk);
-	if (stk->next->value == max && stk->next->index == 2)
+	if (stk->value == max)
 	{
-		rra(stk); //////tenho de contruir esta
+		ra(stk);
 		sa(stk);
 	}
+	else if (stk->next->value == max)
+	{
+		rra(stk);
+		sa(stk);
+	}
+	else
+		sa(stk);
 }
 
 int	count_nodes(t_stk_node *stk)
