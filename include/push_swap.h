@@ -37,9 +37,11 @@ int	ft_is_signal(char c);
 int	get_max(t_stk_node *stk);
 //----------- Stack_tools -------------
 t_stk_node	*stack_a_init(t_stk_node *stk_a, char **av_val, int inpt_cnt);
-int	sorted_list(t_stk_node *stk_a);
+int	check_sort(t_stk_node *stk_a);
 int	count_nodes(t_stk_node *stk);
-void	sort_three(t_stk_node *stk);
+t_stk_node	*sort_three(t_stk_node *stk);
+///////////////////////////// void	define_index(t_stk_node *stk); ////////////////
+t_stk_node	*get_last(t_stk_node *stk);
 //----------- Sort stack -------------
 t_stk_node	*sa(t_stk_node *stk);
 t_stk_node	*rra(t_stk_node *stk);

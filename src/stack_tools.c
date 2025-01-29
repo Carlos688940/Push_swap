@@ -12,27 +12,38 @@
 
 #include "../include/push_swap.h"
 
-void	sort_three(t_stk_node *stk)
+// void	define_index(t_stk_node *stk)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	while (stk)
+// 	{
+// 		stk->index = ++i;
+// 		stk = stk->next;
+// 	}
+// }
+
+t_stk_node	*sort_three(t_stk_node *stk)
 {
 	int	max;
-	t_stk_node	*sort;
 
-	(void)sort;
 	max = get_max(stk);
 	if (stk->value == max)
 	{
-		sort = ra(stk);
-		sort = sa(sort);
+		stk = ra(stk);
+		stk = sa(stk);
 	}
 	else if (stk->next->value == max)
 	{
-		rra(stk);
-		sa(stk);
+		stk = rra(stk);
+		stk = sa(stk);
 	}
 	else
-		sa(stk);
+		stk = sa(stk);
+	return (stk);
 }
-
+	
 int	count_nodes(t_stk_node *stk)
 {
 	int	count;
@@ -46,7 +57,7 @@ int	count_nodes(t_stk_node *stk)
 	return (count);
 }
 
-int	sorted_list(t_stk_node *stk_a)
+int	check_sort(t_stk_node *stk_a)
 {
 	while (stk_a && stk_a->next)
 	{

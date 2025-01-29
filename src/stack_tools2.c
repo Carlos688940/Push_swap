@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stack_tools2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 12:14:13 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 12:14:13 by carlaugu         ###   ########.fr       */
+/*   Created: 2025-01-29 10:53:54 by carlaugu          #+#    #+#             */
+/*   Updated: 2025-01-29 10:53:54 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+t_stk_node	*get_last(t_stk_node *stk)
 {
-	t_stk_node	*stk_a;
-	t_stk_node	*stk_b;
+	t_stk_node	*last;
 
-	stk_a = NULL;
-	stk_b = NULL;
-	(void)stk_b;
-	if (argc == 1 || !argv[1][0])
-		return (1);
-	argv = check_input(argv + 1, argc);
-	stk_a = stack_a_init(stk_a, argv, argc);
-	if (!check_sort(stk_a))
+	while (stk)
 	{
-		if (count_nodes(stk_a) == 2)
-			stk_a = sa(stk_a);
-		else if (count_nodes(stk_a) == 3)
-			stk_a = sort_three(stk_a);
+		if (!stk->next)
+			last = stk->previous->next;
+		stk = stk->next;
 	}
-	free_stack(stk_a, argv, argc, 0);
-	return (0);
+	return (last);
 }
