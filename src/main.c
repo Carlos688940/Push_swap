@@ -30,6 +30,8 @@ int	main(int argc, char **argv)
 			stk_a = sa(stk_a);
 		else if (count_nodes(stk_a) == 3)
 			stk_a = sort_three(stk_a);
+		else
+			ft_push_swap(stk_a, stk_b);
 	}
 	free_stack(stk_a, argv, argc, 0);
 	return (0);

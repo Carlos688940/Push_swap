@@ -44,7 +44,15 @@ t_stk_node	*sort_three(t_stk_node *stk);
 t_stk_node	*get_last(t_stk_node *stk);
 //----------- Sort stack -------------
 t_stk_node	*sa(t_stk_node *stk);
-t_stk_node	*rra(t_stk_node *stk);
 t_stk_node	*ra(t_stk_node *stk);
+t_stk_node	*rra(t_stk_node *stk);
+t_stk_node	*sb(t_stk_node *stk);
+t_stk_node	*rb(t_stk_node *stk);
+t_stk_node	*rrb(t_stk_node *stk);
+void	ss(t_stk_node *stk_a, t_stk_node *stk_b);
+void	rr(t_stk_node *stk_a, t_stk_node *stk_b);
+void	rrr(t_stk_node *stk_a, t_stk_node *stk_b);
+//----------- Push swap -------------
+void	ft_push_swap(t_stk_node *stk_a, t_stk_node *stk_b);
 
 #endif
