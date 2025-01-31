@@ -12,57 +12,51 @@
 
 #include "../include/push_swap.h"
 
-t_stk_node	*ra(t_stk_node *stk)
+void	ra(t_stk_node **stk)
 {
 	t_stk_node	*box;
 	
-	box = stk;
-	while (stk)
+	box = *stk;
+	while (*stk)
 	{
-		if (!stk->next)
+		if (!(*stk)->next)
 		{
 			box->next->previous = NULL;
-			stk->next = box; 
-			box->previous = stk->previous->next;
-			stk = stk->previous;
+			(*stk)->next = box; 
+			box->previous = (*stk)->previous->next;
+			(*stk) = (*stk)->previous;
 			box->next = NULL;
 			break;
 		}
-		stk = stk->next;
+		(*stk) = (*stk)->next;
 	}
 	ft_putstr_fd("ra\n", 1);
-	return (stk);
 }
 
-t_stk_node	*rra(t_stk_node *stk)
+void	rra(t_stk_node **stk)
 {
 	t_stk_node	*last;
 	
-	last = get_last(stk);
+	last = get_last(*stk);
 	last->previous->next = NULL;
-	last->next = stk;
+	last->next = *stk;
 	last->previous = NULL;
-	stk = last;
+	*stk = last;
 	ft_putstr_fd("rra\n", 1);
-	return (stk);
 }
 
 
-t_stk_node	*sa(t_stk_node *stk)
+void	sa(t_stk_node **stk)
 {
 	t_stk_node	*box;
 
-	if (stk->value > stk->next->value)
-	{
-		box = stk->next;
-		if (box->next)
-			box->next->previous = box->previous;
-		box->previous = NULL;
-		stk->next = box->next;
-		stk->previous = box;
-		box->next = stk;
-		stk = box;
-		ft_putstr_fd("sa\n", 1);
-	}
-	return (stk);
+	box = (*stk)->next;
+	if (box->next)
+		box->next->previous = box->previous;
+	box->previous = NULL;
+	(*stk)->next = box->next;
+	(*stk)->previous = box;		
+	box->next = (*stk);
+	(*stk) = box;
+	ft_putstr_fd("sa\n", 1);
 }

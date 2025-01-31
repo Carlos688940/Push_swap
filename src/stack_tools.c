@@ -12,36 +12,40 @@
 
 #include "../include/push_swap.h"
 
-// void	define_index(t_stk_node *stk)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (stk)
-// 	{
-// 		stk->index = ++i;
-// 		stk = stk->next;
-// 	}
-// }
-
-t_stk_node	*sort_three(t_stk_node *stk)
+void	define_index(t_stk_node *stk)
 {
-	int	max;
+	int	i;
 
-	max = get_max(stk);
-	if (stk->value == max)
+	i = -1;
+	while (stk)
 	{
-		stk = ra(stk);
-		stk = sa(stk);
+		stk->index = ++i;
+		stk = stk->next;
 	}
-	else if (stk->next->value == max)
+}
+
+void	sort_three(t_stk_node **stk)
+{
+	t_stk_node	*max;
+
+	max = get_max(*stk);
+	if ((*stk)->value == max->value)
 	{
-		stk = rra(stk);
-		stk = sa(stk);
+		ra(stk);
+		if((*stk)->value > (*stk)->next->value)
+			sa(stk);
+	}
+	else if ((*stk)->next->value == max->value)
+	{
+		rra(stk);
+		if((*stk)->value > (*stk)->next->value)
+			sa(stk);
 	}
 	else
-		stk = sa(stk);
-	return (stk);
+	{
+		if((*stk)->value > (*stk)->next->value)
+			sa(stk);
+	}
 }
 	
 int	count_nodes(t_stk_node *stk)
@@ -68,7 +72,7 @@ int	check_sort(t_stk_node *stk_a)
 	return (1);
 }
 
-t_stk_node	*stack_a_init(t_stk_node *stk_a, char **av_val, int inpt_cnt)
+void	stack_a_init(t_stk_node **stk_a, char **av_val, int inpt_cnt)
 {
 	t_stk_node	*lst_node;
 	t_stk_node	*ptr;
@@ -79,19 +83,18 @@ t_stk_node	*stack_a_init(t_stk_node *stk_a, char **av_val, int inpt_cnt)
 		free_splt(av_val, inpt_cnt, 1);
 	ft_bzero(ptr, sizeof(t_stk_node));
 	ptr->value = ft_atoi(av_val[0]);
-	stk_a = ptr;
-	lst_node = stk_a;
-	i = 1;
-	while (av_val[i])
+	*stk_a = ptr;
+	lst_node = *stk_a;
+	i = 0;
+	while (av_val[++i])
 	{
 		ptr = malloc(sizeof(t_stk_node));
 		if (!ptr)
-			free_stack(stk_a, av_val, inpt_cnt, 1);
+			free_stack(*stk_a, av_val, inpt_cnt, 1);
 		ft_bzero(ptr, sizeof(t_stk_node));
 		ptr->value = ft_atoi(av_val[i]);
 		ptr->previous = lst_node;
 		ptr->previous->next = ptr;
 		lst_node = ptr;
 	}
-	return (stk_a);
 }

@@ -34,25 +34,26 @@ void	free_stack(t_stk_node *stk, char **av_val, int inpt_cnt, int i);
 //----------- Utils -------------
 long	ft_atol(char *str);
 int	ft_is_signal(char c);
-int	get_max(t_stk_node *stk);
+t_stk_node	*get_max(t_stk_node *stk);
+t_stk_node	*get_min(t_stk_node *stk);
 //----------- Stack_tools -------------
-t_stk_node	*stack_a_init(t_stk_node *stk_a, char **av_val, int inpt_cnt);
+void	stack_a_init(t_stk_node **stk_a, char **av_val, int inpt_cnt);
 int	check_sort(t_stk_node *stk_a);
 int	count_nodes(t_stk_node *stk);
-t_stk_node	*sort_three(t_stk_node *stk);
-///////////////////////////// void	define_index(t_stk_node *stk); ////////////////
+void	sort_three(t_stk_node **stk);
+void	define_index(t_stk_node *stk); 
 t_stk_node	*get_last(t_stk_node *stk);
 //----------- Sort stack -------------
-t_stk_node	*sa(t_stk_node *stk);
-t_stk_node	*ra(t_stk_node *stk);
-t_stk_node	*rra(t_stk_node *stk);
-t_stk_node	*sb(t_stk_node *stk);
-t_stk_node	*rb(t_stk_node *stk);
-t_stk_node	*rrb(t_stk_node *stk);
+void	sa(t_stk_node **stk);
+void	rra(t_stk_node **stk);
+void	ra(t_stk_node **stk);
 void	ss(t_stk_node *stk_a, t_stk_node *stk_b);
 void	rr(t_stk_node *stk_a, t_stk_node *stk_b);
 void	rrr(t_stk_node *stk_a, t_stk_node *stk_b);
+void	sb(t_stk_node **stk);
+void	rrb(t_stk_node **stk);
+void	rb(t_stk_node **stk);
 //----------- Push swap -------------
-void	ft_push_swap(t_stk_node *stk_a, t_stk_node *stk_b);
+void	ft_push_swap(t_stk_node **stk_a, t_stk_node **stk_b);
 
 #endif

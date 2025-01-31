@@ -18,18 +18,40 @@ void	print_error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	get_max(t_stk_node *stk)
+t_stk_node	*get_min(t_stk_node *stk)
+{
+	int	min;
+	t_stk_node	*min_nd;
+
+	min = INT_MAX;
+	while (stk)
+	{
+		if (stk->value < min)
+		{
+			min = stk->value;
+			min_nd = stk;
+		}
+		stk = stk->next;
+	}
+	return (min_nd);
+}
+
+t_stk_node	*get_max(t_stk_node *stk)
 {
 	int	max;
+	t_stk_node	*max_nd;
 
-	max = 0;
+	max = INT_MIN;
 	while (stk)
 	{
 		if (stk->value > max)
+		{
 			max = stk->value;
+			max_nd = stk;
+		}
 		stk = stk->next;
 	}
-	return (max);
+	return (max_nd);
 }
 
 long	ft_atol(char *str)
@@ -46,7 +68,10 @@ long	ft_atol(char *str)
 	if (str[i] == '+')
 		i++;
 	if (str[i] == '-')
+	{
 		sign = -sign;
+		i++;
+	}
 	while (ft_isdigit(str[i]))
 		result = result * 10 + (str[i++] - '0');
 	return (result * sign);
