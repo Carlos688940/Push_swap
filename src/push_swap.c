@@ -46,35 +46,32 @@ int	ft_round(float i)
 void	pb(t_stk_node **stk_a, t_stk_node **stk_b)
 {
 	t_stk_node	*box;
-	t_stk_node	*last;
 
-	(void)last;
-	last = *stk_a;
 	box = *stk_a;
 	*stk_a = (*stk_a)->next;
+	(*stk_a)->previous = NULL;
 	box->next = *stk_b;
+	if (*stk_b)
+		(*stk_b)->previous = box;
 	box->previous = NULL;
 	*stk_b = box;
-	box = (*stk_b)->next;
-	while (box)
-	{
-		box->previous = last;
-		last = box;
-		box = box->next;
-	}
+	define_index(*stk_a);
+	define_index(*stk_b);
+	ft_putstr_fd("pb\n", 1);
 }
 
 void	ft_push_swap(t_stk_node **stk_a, t_stk_node **stk_b)
 {
+	int	median;
 	int	stk_len;
 	int	mid_len;
 	int	max_ind_actual;
 	t_stk_node	*min;
 	(void)min;
 
-	define_index(*stk_a);
 	stk_len = get_last(*stk_a)->index + 1;
 	mid_len = stk_len / 2;
+	median = mid_len;
 	max_ind_actual = stk_len - 1;
 	while (*stk_a)
 	{
@@ -83,15 +80,15 @@ void	ft_push_swap(t_stk_node **stk_a, t_stk_node **stk_b)
 			min = get_min(*stk_a);
 			while ((*stk_a)->value != min->value)
 			{
-				if ((*stk_a)->index <= mid_len)
+				if ((*stk_a)->index <= median)
 					ra(stk_a);
 				else
 					rra(stk_a);
 			}
 			pb(stk_a, stk_b);
-			define_index(*stk_a);
 			max_ind_actual = get_last(*stk_a)->index;
-			mid_len = max_ind_actual / 2;
+			median = max_ind_actual / 2;
 		}
+		break;
 	}
 }

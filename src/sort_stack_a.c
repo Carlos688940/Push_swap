@@ -43,6 +43,7 @@ void	rra(t_stk_node **stk)
 	last->next = *stk;
 	last->previous = NULL;
 	*stk = last;
+	define_index(*stk);
 	ft_putstr_fd("rra\n", 1);
 }
 
@@ -59,5 +60,6 @@ void	sa(t_stk_node **stk)
 	(*stk)->previous = box;		
 	box->next = (*stk);
 	(*stk) = box;
+	define_index(*stk);
 	ft_putstr_fd("sa\n", 1);
 }

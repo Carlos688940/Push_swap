@@ -93,6 +93,7 @@ void	stack_a_init(t_stk_node **stk_a, char **av_val, int inpt_cnt)
 			free_stack(*stk_a, av_val, inpt_cnt, 1);
 		ft_bzero(ptr, sizeof(t_stk_node));
 		ptr->value = ft_atoi(av_val[i]);
+		ptr->index = i;
 		ptr->previous = lst_node;
 		ptr->previous->next = ptr;
 		lst_node = ptr;
