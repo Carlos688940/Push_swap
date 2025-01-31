@@ -60,3 +60,14 @@ void	sb(t_stk_node **stk)
 	(*stk) = box;
 	ft_putstr_fd("sb\n", 1);
 }
+
+void	pb(t_stk_node **stk_a, t_stk_node **stk_b)
+{
+	t_stk_node	*box;
+
+	box = *stk_a;
+	*stk_a = (*stk_a)->next;
+	(*stk_a)->previous = NULL;
+	box->next = stk_b;
+	stk_b = box;
+}

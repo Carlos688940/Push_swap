@@ -53,6 +53,7 @@ void	rrr(t_stk_node *stk_a, t_stk_node *stk_b);
 void	sb(t_stk_node **stk);
 void	rrb(t_stk_node **stk);
 void	rb(t_stk_node **stk);
+void	pb(t_stk_node **stk_a, t_stk_node **stk_b);
 //----------- Push swap -------------
 void	ft_push_swap(t_stk_node **stk_a, t_stk_node **stk_b);
 
