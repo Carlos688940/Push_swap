@@ -24,12 +24,13 @@ void	ra(t_stk_node **stk)
 			box->next->previous = NULL;
 			(*stk)->next = box; 
 			box->previous = (*stk)->previous->next;
-			(*stk) = (*stk)->previous;
+			(*stk) = box->next;
 			box->next = NULL;
 			break;
 		}
 		(*stk) = (*stk)->next;
 	}
+	define_index(*stk);
 	ft_putstr_fd("ra\n", 1);
 }
 
