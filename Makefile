@@ -6,7 +6,8 @@ RM = rm -f
 NAME = push_swap
 
 SRCS = src/main.c src/check_input.c src/free_utils.c src/utils.c src/stack_tools.c \
-	src/sort_stack_a.c src/stack_tools2.c src/push_swap.c
+	src/sort_stack_a.c src/sort_stack_b.c src/stack_tools2.c src/push_swap.c \
+	src/sort_both.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libs/Libft/libft.a
 

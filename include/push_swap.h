@@ -16,10 +16,14 @@
 # include "../libs/Libft/libft.h"
 # include <limits.h>
 
+extern int abc; ///////////
+
 typedef struct s_stk_node
 {
 	int		value;
 	int		index;
+	int		price;
+	struct s_stk_node	*target;		
 	struct s_stk_node	*next;
 	struct s_stk_node	*previous;
 }	t_stk_node;
@@ -44,15 +48,16 @@ void	sort_three(t_stk_node **stk);
 void	define_index(t_stk_node *stk); 
 t_stk_node	*get_last(t_stk_node *stk);
 //----------- Sort stack -------------
-void	sa(t_stk_node **stk);
-void	rra(t_stk_node **stk);
-void	ra(t_stk_node **stk);
-void	ss(t_stk_node *stk_a, t_stk_node *stk_b);
-void	rr(t_stk_node *stk_a, t_stk_node *stk_b);
-void	rrr(t_stk_node *stk_a, t_stk_node *stk_b);
-void	sb(t_stk_node **stk);
-void	rrb(t_stk_node **stk);
-void	rb(t_stk_node **stk);
+void	sa(t_stk_node **stk, int x);
+void	rra(t_stk_node **stk, int x);
+void	ra(t_stk_node **stk, int x);
+void	pa(t_stk_node **stk_a, t_stk_node **stk_b);
+void	ss(t_stk_node **stk_a, t_stk_node **stk_b);
+void	rr(t_stk_node **stk_a, t_stk_node **stk_b);
+void	rrr(t_stk_node **stk_a, t_stk_node **stk_b);
+void	sb(t_stk_node **stk, int x);
+void	rrb(t_stk_node **stk, int x);
+void	rb(t_stk_node **stk, int x);
 void	pb(t_stk_node **stk_a, t_stk_node **stk_b);
 //----------- Push swap -------------
 void	ft_push_swap(t_stk_node **stk_a, t_stk_node **stk_b);

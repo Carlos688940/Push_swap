@@ -31,21 +31,18 @@ void	sort_three(t_stk_node **stk)
 	max = get_max(*stk);
 	if ((*stk)->value == max->value)
 	{
-		ra(stk);
+		ra(stk, 1);
 		if((*stk)->value > (*stk)->next->value)
-			sa(stk);
+			sa(stk, 1);
 	}
 	else if ((*stk)->next->value == max->value)
 	{
-		rra(stk);
+		rra(stk, 1);
 		if((*stk)->value > (*stk)->next->value)
-			sa(stk);
+			sa(stk, 1);
 	}
 	else
-	{
-		if((*stk)->value > (*stk)->next->value)
-			sa(stk);
-	}
+		sa(stk, 1);
 }
 	
 int	count_nodes(t_stk_node *stk)

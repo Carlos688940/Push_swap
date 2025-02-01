@@ -12,6 +12,10 @@
 
 #include "../include/push_swap.h"
 
+#include <stdio.h>
+
+int abc = 0;
+
 int	main(int argc, char **argv)
 {
 	t_stk_node	*stk_a;
@@ -27,12 +31,19 @@ int	main(int argc, char **argv)
 	if (!check_sort(stk_a))
 	{
 		if (count_nodes(stk_a) == 2 && stk_a->value > stk_a->next->value)
-			sa(&stk_a);
+			sa(&stk_a, 1);
 		else if (count_nodes(stk_a) == 3)
 			sort_three(&stk_a);
 		else
 			ft_push_swap(&stk_a, &stk_b);
 	}
+	printf("\n\n\n%d\n", abc);
+	stk_b = stk_a;
+	while (stk_b)
+	{
+		printf("index: %d, value:%d\n", stk_b->index, stk_b->value);
+		stk_b = stk_b->next;
+	}	
 	free_stack(stk_a, argv, argc, 0);
 	return (0);
 }

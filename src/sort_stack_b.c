@@ -12,28 +12,27 @@
 
 #include "../include/push_swap.h"
 
-void	rb(t_stk_node **stk)
+void	rb(t_stk_node **stk, int x)
 {
 	t_stk_node	*box;
+	t_stk_node	*last;
 	
 	box = *stk;
-	while (*stk)
+	last = get_last(*stk);
+	*stk = (*stk)->next;
+	(*stk)->previous = NULL;
+	box->previous = last;
+	box->next = NULL;
+	last->next = box;
+	define_index(*stk);
+	if (x)
 	{
-		if (!(*stk)->next)
-		{
-			box->next->previous = NULL;
-			(*stk)->next = box; 
-			box->previous = (*stk)->previous->next;
-			(*stk) = (*stk)->previous;
-			box->next = NULL;
-			break;
-		}
-		(*stk) = (*stk)->next;
+		ft_putstr_fd("rb\n", 1);
+		abc++;
 	}
-	ft_putstr_fd("rb\n", 1);
 }
 
-void	rrb(t_stk_node **stk)
+void	rrb(t_stk_node **stk, int x)
 {
 	t_stk_node	*last;
 	
@@ -42,23 +41,28 @@ void	rrb(t_stk_node **stk)
 	last->next = *stk;
 	last->previous = NULL;
 	*stk = last;
-	ft_putstr_fd("rrb\n", 1);
+	define_index(*stk);
+	if (x)
+	{
+		ft_putstr_fd("rrb\n", 1);
+		abc++;
+	}
 }
 
-
-void	sb(t_stk_node **stk)
+void	sb(t_stk_node **stk, int x)
 {
-	t_stk_node	*box;
-
-	box = (*stk)->next;
-	if (box->next)
-		box->next->previous = box->previous;
-	box->previous = NULL;
-	(*stk)->next = box->next;
-	(*stk)->previous = box;		
-	box->next = (*stk);
-	(*stk) = box;
-	ft_putstr_fd("sb\n", 1);
+	(*stk)->previous = (*stk)->next;
+	(*stk)->next = (*stk)->next->next;
+	(*stk)->next->previous = *stk;
+	(*stk)->previous->next = *stk;
+	*stk = (*stk)->previous;
+	(*stk)->previous = NULL;
+	define_index(*stk);
+	if (x)
+	{
+		ft_putstr_fd("sb\n", 1);
+		abc++;
+	}
 }
 
 void	pb(t_stk_node **stk_a, t_stk_node **stk_b)
@@ -68,6 +72,13 @@ void	pb(t_stk_node **stk_a, t_stk_node **stk_b)
 	box = *stk_a;
 	*stk_a = (*stk_a)->next;
 	(*stk_a)->previous = NULL;
-	box->next = stk_b;
-	stk_b = box;
+	box->next = *stk_b;
+	if (*stk_b)
+		(*stk_b)->previous = box;
+	box->previous = NULL;
+	*stk_b = box;
+	define_index(*stk_a);
+	define_index(*stk_b);
+	ft_putstr_fd("pb\n", 1);
+	abc++;
 }

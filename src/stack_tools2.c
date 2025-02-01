@@ -14,13 +14,13 @@
 
 t_stk_node	*get_last(t_stk_node *stk)
 {
-	t_stk_node	*last;
+	// t_stk_node	*last;
 
 	while (stk)
 	{
 		if (!stk->next)
-			last = stk->previous->next;
+			break;
 		stk = stk->next;
 	}
-	return (last);
+	return (stk);
 }
