@@ -14,8 +14,6 @@
 
 t_stk_node	*get_last(t_stk_node *stk)
 {
-	// t_stk_node	*last;
-
 	while (stk)
 	{
 		if (!stk->next)
