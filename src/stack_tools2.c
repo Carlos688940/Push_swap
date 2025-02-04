@@ -12,13 +12,13 @@
 
 #include "../include/push_swap.h"
 
-t_stk_node	*get_last(t_stk_node *stk)
+t_snode	*get_last(t_snode *stk)
 {
 	while (stk)
 	{
-		if (!stk->next)
+		if (!stk->nxt)
 			break;
-		stk = stk->next;
+		stk = stk->nxt;
 	}
 	return (stk);
 }

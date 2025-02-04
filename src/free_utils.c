@@ -27,15 +27,15 @@ void	free_splt(char **av, int ac, int check)
 		print_error();
 }
 
-void	free_stack(t_stk_node *stk, char **av_val, int inpt_cnt, int i)
+void	free_stack(t_snode *stk, char **av, int ac, int i)
 {
-	t_stk_node	*box;
+	t_snode	*box;
 
 	while (stk)
 	{
-		box = stk->next;
+		box = stk->nxt;
 		free (stk);
 		stk = box;
 	}
-	free_splt(av_val, inpt_cnt, i);
+	free_splt(av, ac, i);
 }

@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_both.c                                        :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-30 21:16:25 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-30 21:16:25 by carlaugu         ###   ########.fr       */
+/*   Created: 2025-02-04 19:30:01 by carlaugu          #+#    #+#             */
+/*   Updated: 2025-02-04 19:30:01 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ss(t_stk_node **stk_a, t_stk_node **stk_b)
+static void	rotate(t_snode **stk)
 {
-	sa(stk_a, 0);
-	sb(stk_b, 0);
-	ft_putstr_fd("ss\n", 1);
-	abc++;
+	t_snode	*last;
+
+	last = get_last(*stk);
+	last->nxt = *stk;
+	(*stk)->prev = last;
+	*stk = (*stk)->nxt;
+	(*stk)->prev = NULL;
+	last->nxt->nxt = NULL;
+	define_index(*stk);
 }
 
-void	rr(t_stk_node **stk_a, t_stk_node **stk_b)
+void	ra(t_snode **stk, int i)
 {
-	ra(stk_a, 0);
-	rb(stk_b, 0);
-	ft_putstr_fd("rr\n", 1);
-	abc++;
+	rotate(stk);
+	if (i)
+		write(1, "ra\n", 3);
 }
 
-void	rrr(t_stk_node **stk_a, t_stk_node **stk_b)
+void	rb(t_snode **stk, int i)
 {
-	rra(stk_a, 0);
-	rrb(stk_b, 0);
-	ft_putstr_fd("rrr\n", 1);
-	abc++;
+	rotate(stk);
+	if (i)
+		write(1, "rb\n", 3);
+}
+
+void	rr(t_snode **s_a, t_snode **s_b)
+{
+	ra(s_a, 0);
+	rb(s_b, 0);
+	write(1, "rr\n", 3);
 }

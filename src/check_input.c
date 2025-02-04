@@ -33,20 +33,20 @@ static	int	check_int(char *str)
 	return (1);
 }
 
-static	int	check_duplicate(char **av_val, int inpt_cnt)
+static	int	check_duplicate(char **av, int ac)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (av_val[j])
+	while (av[j])
 	{
 		i = j;
-		while (av_val[j] && av_val[i + 1])
+		while (av[j] && av[i + 1])
 		{
-			if (ft_atol(av_val[j]) == ft_atol(av_val [i + 1]))
-				free_splt(av_val, inpt_cnt, 1);
+			if (ft_atol(av[j]) == ft_atol(av [i + 1]))
+				free_splt(av, ac, 1);
 			i++;
 		}
 		j++;
@@ -54,18 +54,18 @@ static	int	check_duplicate(char **av_val, int inpt_cnt)
 	return (0);
 }
 
-char	**check_input(char **av_val, int inpt_cnt)
+char	**check_input(char **av, int ac)
 {
 	int	i;
 
-	if (inpt_cnt == 2)
-		av_val = ft_split(av_val[0], ' ');
+	if (ac == 2)
+		av = ft_split(av[0], ' ');
 	i = -1;
-	while (av_val[++i])
+	while (av[++i])
 	{
-		if (!check_sintax(av_val[i]) || !check_int(av_val[i]))
-			free_splt(av_val, inpt_cnt, 1);
+		if (!check_sintax(av[i]) || !check_int(av[i]))
+			free_splt(av, ac, 1);
 	}
-	check_duplicate(av_val, inpt_cnt);
-	return (av_val);
+	check_duplicate(av, ac);
+	return (av);
 }

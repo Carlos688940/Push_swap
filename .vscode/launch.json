@@ -5,7 +5,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "/home/carlaugu/42_commoncore/Push_swap/push_swap",
-		"args": ["10 5 2 7 4 9 8 6 1"],
+		"args": ["7 2 3 1 5"],
 		"stopAtEntry": false,
 		"cwd": "/home/carlaugu/42_commoncore/Push_swap",
 		"environment": [],

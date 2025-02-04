@@ -18,40 +18,32 @@ void	print_error(void)
 	exit(EXIT_FAILURE);
 }
 
-t_stk_node	*get_min(t_stk_node *stk)
+int	get_min(t_snode *stk)
 {
 	int	min;
-	t_stk_node	*min_nd;
 
 	min = INT_MAX;
 	while (stk)
 	{
-		if (stk->value < min)
-		{
-			min = stk->value;
-			min_nd = stk;
-		}
-		stk = stk->next;
+		if (stk->val < min)
+			min = stk->val;
+		stk = stk->nxt;
 	}
-	return (min_nd);
+	return (min);
 }
 
-t_stk_node	*get_max(t_stk_node *stk)
+int	get_max(t_snode *stk)
 {
 	int	max;
-	t_stk_node	*max_nd;
 
 	max = INT_MIN;
 	while (stk)
 	{
-		if (stk->value > max)
-		{
-			max = stk->value;
-			max_nd = stk;
-		}
-		stk = stk->next;
+		if (stk->val > max)
+			max = stk->val;
+		stk = stk->nxt;
 	}
-	return (max_nd);
+	return (max);
 }
 
 long	ft_atol(char *str)

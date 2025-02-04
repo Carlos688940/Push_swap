@@ -12,40 +12,40 @@
 
 #include "../include/push_swap.h"
 
-void	define_index(t_stk_node *stk)
+void	define_index(t_snode *stk)
 {
 	int	i;
 
 	i = -1;
 	while (stk)
 	{
-		stk->index = ++i;
-		stk = stk->next;
+		stk->ind = ++i;
+		stk = stk->nxt;
 	}
 }
 
-void	sort_three(t_stk_node **stk)
+void	sort_three(t_snode **stk)
 {
-	t_stk_node	*max;
+	int	max;
 
 	max = get_max(*stk);
-	if ((*stk)->value == max->value)
+	if ((*stk)->val == max)
 	{
 		ra(stk, 1);
-		if((*stk)->value > (*stk)->next->value)
+		if((*stk)->val > (*stk)->nxt->val)
 			sa(stk, 1);
 	}
-	else if ((*stk)->next->value == max->value)
+	else if ((*stk)->nxt->val == max)
 	{
 		rra(stk, 1);
-		if((*stk)->value > (*stk)->next->value)
+		if((*stk)->val > (*stk)->nxt->val)
 			sa(stk, 1);
 	}
 	else
 		sa(stk, 1);
 }
 	
-int	count_nodes(t_stk_node *stk)
+int	count_nodes(t_snode *stk)
 {
 	int	count;
 
@@ -53,46 +53,46 @@ int	count_nodes(t_stk_node *stk)
 	while (stk)
 	{
 		count++;
-		stk = stk->next;
+		stk = stk->nxt;
 	}
 	return (count);
 }
 
-int	check_sort(t_stk_node *stk_a)
+int	check_sort(t_snode *stk_a)
 {
-	while (stk_a && stk_a->next)
+	while (stk_a && stk_a->nxt)
 	{
-		if (stk_a->value > stk_a->next->value)
+		if (stk_a->val > stk_a->nxt->val)
 			return (0);
-		stk_a = stk_a->next;
+		stk_a = stk_a->nxt;
 	}
 	return (1);
 }
 
-void	stack_a_init(t_stk_node **stk_a, char **av_val, int inpt_cnt)
+void	stack_a_init(t_snode **s_a, char **av, int ac)
 {
-	t_stk_node	*lst_node;
-	t_stk_node	*ptr;
+	t_snode	*lst_node;
+	t_snode	*ptr;
 	int	i;
 
-	ptr = malloc(sizeof(t_stk_node));
+	ptr = malloc(sizeof(t_snode));
 	if (!ptr)
-		free_splt(av_val, inpt_cnt, 1);
-	ft_bzero(ptr, sizeof(t_stk_node));
-	ptr->value = ft_atoi(av_val[0]);
-	*stk_a = ptr;
-	lst_node = *stk_a;
+		free_splt(av, ac, 1);
+	ft_bzero(ptr, sizeof(t_snode));
+	ptr->val = ft_atoi(av[0]);
+	*s_a = ptr;
+	lst_node = *s_a;
 	i = 0;
-	while (av_val[++i])
+	while (av[++i])
 	{
-		ptr = malloc(sizeof(t_stk_node));
+		ptr = malloc(sizeof(t_snode));
 		if (!ptr)
-			free_stack(*stk_a, av_val, inpt_cnt, 1);
-		ft_bzero(ptr, sizeof(t_stk_node));
-		ptr->value = ft_atoi(av_val[i]);
-		ptr->index = i;
-		ptr->previous = lst_node;
-		ptr->previous->next = ptr;
+			free_stack(*s_a, av, ac, 1);
+		ft_bzero(ptr, sizeof(t_snode));
+		ptr->val = ft_atoi(av[i]);
+		ptr->ind = i;
+		ptr->prev = lst_node;
+		ptr->prev->nxt = ptr;
 		lst_node = ptr;
 	}
 }
