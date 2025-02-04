@@ -12,151 +12,158 @@
 
 #include "../include/push_swap.h"
 
-int	ft_round(float i)
+void	find_target(t_stk_node *src, t_stk_node *dst, char stk)
 {
-	int	j;
-
-	j = i + 0.5;
-	return (j);
-}
-
-void	find_target(t_stk_node *act, t_stk_node *dst, char stk)
-{
-	t_stk_node	*a;
 	t_stk_node	*d;
 
-	a = act;
 	d = dst;
-	while (a)
+	while (d)
 	{
-		if (!dst)
-			a->target = NULL;
-		else
+		if (stk == 'a')
 		{
-			while (d)
-			{
-				a->target = d;
-				if (stk == 'a')
-				{
-					if (d->value < a->value)
-					{
-						if (a->target->value < d->value)
-							a->target = d;
-						else if (a->target->value > d->value)
-							a->target = d;
-					}
-				}
-				else
-				{
-					if (d->value > a->value)
-					{
-						if (d->value > a->target->value)
-							a->target = a;
-						else if (d->value < a->target->value)
-							a->target = a;
-					}
-				}
-				d = d->next;
-			}
+			if (!src->target || (d->value < src->value && d->value > src->target->value))
+				src->target = d;
 		}
-		d = dst;
-		a = a->next;
+		else if (stk == 'b')
+		{
+			if (!src->target || (d->value > src->value && d->value < src->target->value))
+				src->target = d;
+		}
+		d = d->next;
 	}
 }
 
-void	find_price(t_stk_node *act, t_stk_node *dst, t_stk_node **cheapest)
+void	find_price(t_stk_node *src, t_stk_node *dst, int size_s, t_moves *moves, t_cheapest *cheapest)
 {
-	int	max_ind_act;
-	int	max_ind_dst;
-	int	mid_point;
-	t_stk_node	*ptr;
+	int	size_d;
 
-	*cheapest = NULL;
-	ptr = act;
-	mid_point = ft_round(get_min(act)->value + get_max(act)->value) / 2;
-	max_ind_act = get_last(act)->index;
+	if (src->index <= size_s / 2)
+		moves->ra = src->index;
+	else
+		moves->rra = (size_s - src->index) + 1;
 	if (dst)
-		max_ind_dst = get_last(dst)->index;
-	while (ptr)
 	{
-		if (ptr->value <= mid_point)
+		size_d = get_last(dst)->index;
+		if (src->target->index <= size_d / 2)
+			moves->rb = src->target->index;
+		else
+			moves->rrb = (size_d - src->target->index) + 1;
+	}
+	src->price = moves->ra + moves->rb + moves->rra + moves->rrb;
+	while (moves->ra && moves->rb)
+	{
+		moves->ra--;
+		moves->rb--;
+		moves->rr++;
+		src->price = moves->ra + moves->rb + moves->rr;
+	}
+	while (moves->rra && moves->rrb)
+	{
+		moves->rra--;
+		moves->rrb--;
+		moves->rrr++;
+		src->price = moves->rra + moves->rrb + moves->rrr;
+	}
+	if (!cheapest->cheapest || src->price < cheapest->cheapest->price)
+	{
+		cheapest->cheapest = src;
+		cheapest->moves = *moves;
+	}
+}
+
+void	rotate(t_stk_node **src, t_stk_node **dst, t_cheapest *cheapest)
+{
+	while (cheapest->moves.rr--)
+		rr(src, dst);
+	while (cheapest->moves.rrr--)
+		rrr(src, dst);
+	while (cheapest->moves.ra--)
+		ra(src, 1);
+	while (cheapest->moves.rb--)
+		rb(src, 1);
+	while (cheapest->moves.rra--)
+		rra(src, 1);
+	while (cheapest->moves.rrb--)
+		rrb(src, 1);
+}
+
+void	check_last_b(t_stk_node **stk_b)
+{
+	if ((*stk_b)->value < get_last(*stk_b)->value)
+		rb(stk_b, 1);
+	if ((*stk_b)->next)
+	{
+		if ((*stk_b)->value < (*stk_b)->next->value)
+			sb(stk_b, 1);
+	}
+}
+
+void	push_to_b(t_stk_node **stk_a, t_stk_node **stk_b, t_moves *moves, t_cheapest *cheapest)
+{
+	int	size;
+	int	mid_nb;
+	t_stk_node	*a;
+
+	a = *stk_a;
+	ft_bzero(moves, sizeof(t_moves));
+	ft_bzero(cheapest, sizeof(t_cheapest));
+	size = get_last(*stk_a)->index;
+	mid_nb = (get_min(*stk_a)->value + get_max(*stk_a)->value) / 2;
+	while (size > 2)
+	{
+		while (a)
 		{
-			if (ptr->index <= max_ind_act / 2)
-				ptr->price = ptr->index;
-			else
-				ptr->price = (max_ind_act - ptr->index) + 1;
-			if (dst)
+			if (a->value <= mid_nb)
 			{
-				if (dst->index <= max_ind_dst / 2)
-					ptr->price += dst->index;
-				else
-					ptr->price += (max_ind_dst - dst->index) + 1;
-
-			}	
-			if (!(*cheapest))
-				*cheapest = ptr;
-			else
-			{
-				if (ptr->price < (*cheapest)->price)
-					*cheapest = ptr;
+				a->target = 0;
+				find_target(a, *stk_b, 'a');
+				find_price(a, *stk_b, size, moves, cheapest);
+				ft_bzero(moves, sizeof(t_moves));
 			}
+			a = a->next;
 		}
-		ptr = ptr->next;
-	}
-}
-
-void	rotate_stks(t_stk_node **act, t_stk_node **dst, t_stk_node *cheapest)
-{
-	int	median_act;
-	int	median_dst;
-
-	median_act = get_last(*act)->index;
-	if (*dst)
-		median_dst = get_last(*dst)->index;
-	while ((*act != cheapest) && (*dst != cheapest->target))
-	{
-		if (cheapest->index <= median_act && cheapest->target->index <= median_dst)
-			rr(act, dst);
-		else
-			rrr(act, dst);
-	}
-	while (*act != cheapest)
-	{
-		if ((*act)->index <= median_act)
-			ra(act, 1);
-		else
-			rra(act, 1);
-	}
-	while (*dst != cheapest->target)
-	{
-		if ((*dst)->index <= median_dst)
-			rb(dst, 1);
-		else
-			rrb(dst, 1);
-	}
-}
-
-void	push_to_b(t_stk_node **stk_a, t_stk_node **stk_b)
-{
-	int	max_ind;
-	t_stk_node	*cheapest;
-
-	max_ind = get_last(*stk_a)->index;
-	while (max_ind > 2)
-	{
-		find_target(*stk_a, *stk_b, 'a');
-		find_price(*stk_a, *stk_b, &cheapest);
-		rotate_stks(stk_a, stk_b, cheapest);
+		rotate(stk_a, stk_b, cheapest);
 		pb(stk_a, stk_b);
-		max_ind = get_last(*stk_a)->index;
+		check_last_b(stk_b);
+		cheapest->cheapest->target = 0;
+		ft_bzero(cheapest, sizeof(t_cheapest));
+		size = get_last(*stk_a)->index;
+		mid_nb = (get_min(*stk_a)->value + get_max(*stk_a)->value) / 2;
+		a = *stk_a;
+	}
+}
+
+void	push_back(t_stk_node **stk_a, t_stk_node **stk_b, t_moves *moves, t_cheapest *cheapest)
+{
+	int	size_b;
+	t_stk_node	*b;
+
+	b = *stk_b;
+	size_b = get_last(*stk_b)->index;
+	while (*stk_b)
+	{
+		while (b)
+		{
+			b->target = 0;
+			find_target(b, *stk_a, 'b');
+			find_price(b, *stk_a, size_b, moves, cheapest);
+			ft_bzero(moves, sizeof(t_moves));
+			b = b->next;
+		}
+		rotate(stk_b, stk_a, cheapest);
+		pa(stk_a, stk_b);
+		ft_bzero(cheapest, sizeof(t_cheapest));
+		b = *stk_b;
 	}
 }
 
 void	ft_push_swap(t_stk_node **stk_a, t_stk_node **stk_b)
 {
-	// t_stk_node	*cheapest;
+	t_cheapest	cheapest;
+	t_moves		moves;
+	
 
-	push_to_b(stk_a, stk_b);
+	push_to_b(stk_a, stk_b, &moves, &cheapest);
 	sort_three(stk_a);
-	sort_three(stk_a);
+	push_back(stk_a, stk_b, &moves, &cheapest);
 }

@@ -18,6 +18,7 @@
 
 extern int abc; ///////////
 
+
 typedef struct s_stk_node
 {
 	int		value;
@@ -27,6 +28,22 @@ typedef struct s_stk_node
 	struct s_stk_node	*next;
 	struct s_stk_node	*previous;
 }	t_stk_node;
+
+typedef struct s_moves
+{
+	int	ra;
+	int	rra;
+	int	rb;
+	int	rrb;
+	int	rr;
+	int	rrr;
+}	t_moves;
+
+typedef	struct s_cheapest
+{
+	t_stk_node	*cheapest;
+	t_moves	moves;
+}	t_cheapest;
 
 //----------- Check-input -------------
 char	**check_input(char **av, int ac);
