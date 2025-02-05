@@ -31,14 +31,66 @@ void	find_tgt(t_snode *src, t_snode *dst, char tgt)
 	}
 }
 
+int	ft_round(float i)
+{
+	return (i + 0.5);
+}
+
+
+// int	increase_mid(t_snode *s_a, int mid_nxt)
+// {
+// 	int	mid;
+// 	int	count;
+// 	t_snode	*a;
+
+// 	a = s_a;
+// 	mid = (mid_nxt + get_max(s_a)) / 2;
+// 	while (a)
+// 	{
+		// enquanto count nao é igual a lst_ind / 2, deve 
+		// ir aumentando o ponto medio
+// 	}
+// }
+
+int	find_mid_n(t_snode *s_a, int lst_ind)
+{
+	int	mid_n;
+	int	count;
+	int	min_befor;
+	int	min_after;
+	t_snode	*a;
+
+	(void)lst_ind;
+	a = s_a;
+	count = 0;
+	min_befor = INT_MIN;
+	min_after = INT_MAX;
+	mid_n = (get_min(a) + get_max(a)) / 2;
+	while (a)
+	{
+		if (a->val < mid_n && min_befor < mid_n && a->val > min_befor)
+			min_befor = a->val;
+		if ((a->val > get_min(s_a)) && (a->val < get_max(s_a)) && (a->val < min_after) && a->val > mid_n)
+			min_after = a->val;
+		if (a->val < mid_n)
+			count++;
+		a = a->nxt;
+	}
+	// if (count < ft_round(lst_ind / 2.0))
+	// 	mid_n = increase_mid(s_a, min_after);
+	// else if (count > ft_round(lst_ind / 2.0))
+	// 	mid_n = decrease_mid(min_befor);
+	return (mid_n);
+}
+
 void	push_to_b(t_snode **s_a, t_snode **s_b)
 {
 	int	mid_n;
 	int	lst_ind;
 	int	lst_ind_b;
 
-	mid_n = (get_min(*s_a) + get_max(*s_a)) / 2;
 	lst_ind = get_last(*s_a)->ind;
+	mid_n = find_mid_n(*s_a, lst_ind);
 	lst_ind_b = 0;
 	while (lst_ind > 2)
 	{
@@ -57,6 +109,7 @@ void	push_to_b(t_snode **s_a, t_snode **s_b)
 			pb(s_a, s_b);
 			lst_ind_b = get_last(*s_b)->ind;
 			lst_ind = get_last(*s_a)->ind;
+			mid_n = (get_min(*s_a) + get_max(*s_a)) / 2;
 		}
 		else
 			ra(s_a);
