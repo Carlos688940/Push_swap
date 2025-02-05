@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_reverse_rotate.c                              :+:      :+:    :+:   */
+/*   sort_push.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 20:31:04 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 11:14:33 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/02/05 13:10:38 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/05 14:25:49 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	rev_rotate(t_snode **stk)
+void	push(t_snode **src, t_snode **dst)
 {
-	t_snode	*last;
+	t_snode	*box;
 
-	last = get_last(*stk);
-	last->nxt = *stk;
-	last->prev->nxt = NULL;
-	last->prev = NULL;
-	(*stk)->prev = last;
-	*stk = last;
-	define_index(*stk);
+	box = *src;
+	*src = (*src)->nxt;
+	(*src)->prev = NULL;
+	box->nxt = *dst;
+	if (*dst)
+		(*dst)->prev = box;
+	*dst = box;
+	define_index(*src);
+	define_index(*dst);
 }
 
-void	rra(t_snode **stk)
+void	pb(t_snode **s_a, t_snode **s_b)
 {
-	rev_rotate(stk);
-	write(1, "rra\n", 4);
+	push(s_a, s_b);
+	write(1 ,"pb\n", 3);
 }
 
-void	rrb(t_snode **stk)
+void	pa(t_snode **s_a, t_snode **s_b)
 {
-	rev_rotate(stk);
-	write(1, "rrb\n", 4);
-}
-
-void	rrr(t_snode **s_a, t_snode **s_b)
-{
-	rev_rotate(s_a);
-	rev_rotate(s_b);
-	write(1, "rrr\n", 4);
+	push(s_b, s_a);
+	write(1 ,"pa\n", 3);
 }

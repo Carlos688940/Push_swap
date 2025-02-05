@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:08:10 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/01/28 14:18:00 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:24:46 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ typedef struct s_snode
 {
 	int		val;
 	int		ind;
-	int		cost;
-	struct s_moves	moves;	
+	int		cost;	
 	struct s_snode	*tgt;		
 	struct s_snode	*nxt;
 	struct s_snode	*prev;
@@ -59,15 +58,16 @@ void	sort_three(t_snode **stk);
 void	define_index(t_snode *stk); 
 t_snode	*get_last(t_snode *stk);
 //----------- Sort stack -------------
-void	ra(t_snode **stk, int i);
-void	rb(t_snode **stk, int i);
+void	ra(t_snode **stk);
+void	rb(t_snode **stk);
 void	rr(t_snode **s_a, t_snode **s_b);
-void	rra(t_snode **stk, int i);
-void	rrb(t_snode **stk, int i);
+void	rra(t_snode **stk);
+void	rrb(t_snode **stk);
 void	rrr(t_snode **s_a, t_snode **s_b);
-void	sa(t_snode **stk, int i);
-void	sb(t_snode **stk, int i);
+void	sa(t_snode **stk);
+void	sb(t_snode **stk);
 void	ss(t_snode **s_a, t_snode **s_b);
+void	pb(t_snode **s_a, t_snode **s_b);
 //----------- Push swap -------------
 void	ft_push_swap(t_snode **s_a, t_snode **s_b);
 

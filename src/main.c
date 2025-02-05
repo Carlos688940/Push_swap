@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 12:14:13 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 12:14:13 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/01/25 12:14:13 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/05 11:18:02 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (!check_sort(s_a))
 	{
 		if (count_nodes(s_a) == 2 && s_a->val > s_a->nxt->val)
-			sa(&s_a, 1);
+			sa(&s_a);
 		else if (count_nodes(s_a) == 3)
 			sort_three(&s_a);
 		else
