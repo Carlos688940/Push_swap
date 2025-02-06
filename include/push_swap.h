@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:08:10 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 13:24:46 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:50:57 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct s_snode
 	struct s_snode	*prev;
 }	t_snode;
 
+typedef struct s_info
+{
+	int	min;	
+	int	max;
+	int	mid_nb;
+	int	count;
+	int	lst_ind;
+	int	mid_ind;
+}	t_info;
+
 //----------- Check-input -------------
 char	**check_input(char **av, int ac);
 //----------- Errors -------------
@@ -48,8 +58,7 @@ void	free_stack(t_snode *stk, char **av, int ac, int i);
 //----------- Utils -------------
 long	ft_atol(char *str);
 int	ft_is_signal(char c);
-int	get_max(t_snode *stk);
-int	get_min(t_snode *stk);
+int	ft_round(float i);
 //----------- Stack_tools -------------
 void	stack_a_init(t_snode **stk_a, char **av_val, int inpt_cnt);
 int	check_sort(t_snode *stk_a);
@@ -57,6 +66,9 @@ int	count_nodes(t_snode *stk);
 void	sort_three(t_snode **stk);
 void	define_index(t_snode *stk); 
 t_snode	*get_last(t_snode *stk);
+int	get_max(t_snode *stk);
+int	get_min(t_snode *stk);
+void	reset_info_a(t_snode *s_a ,t_info *info);
 //----------- Sort stack -------------
 void	ra(t_snode **stk);
 void	rb(t_snode **stk);
@@ -70,5 +82,6 @@ void	ss(t_snode **s_a, t_snode **s_b);
 void	pb(t_snode **s_a, t_snode **s_b);
 //----------- Push swap -------------
 void	ft_push_swap(t_snode **s_a, t_snode **s_b);
+void	find_mid_n(t_snode *s_a, t_info *info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:09:27 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 14:24:09 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:03:52 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,85 +31,111 @@ void	find_tgt(t_snode *src, t_snode *dst, char tgt)
 	}
 }
 
-int	ft_round(float i)
+void	check_both(t_moves *moves)
 {
-	return (i + 0.5);
-}
-
-
-// int	increase_mid(t_snode *s_a, int mid_nxt)
-// {
-// 	int	mid;
-// 	int	count;
-// 	t_snode	*a;
-
-// 	a = s_a;
-// 	mid = (mid_nxt + get_max(s_a)) / 2;
-// 	while (a)
-// 	{
-		// enquanto count nao é igual a lst_ind / 2, deve 
-		// ir aumentando o ponto medio
-// 	}
-// }
-
-int	find_mid_n(t_snode *s_a, int lst_ind)
-{
-	int	mid_n;
-	int	count;
-	int	min_befor;
-	int	min_after;
-	t_snode	*a;
-
-	(void)lst_ind;
-	a = s_a;
-	count = 0;
-	min_befor = INT_MIN;
-	min_after = INT_MAX;
-	mid_n = (get_min(a) + get_max(a)) / 2;
-	while (a)
+	while (moves->ra && moves->rb)
 	{
-		if (a->val < mid_n && min_befor < mid_n && a->val > min_befor)
-			min_befor = a->val;
-		if ((a->val > get_min(s_a)) && (a->val < get_max(s_a)) && (a->val < min_after) && a->val > mid_n)
-			min_after = a->val;
-		if (a->val < mid_n)
-			count++;
-		a = a->nxt;
+		moves->ra--;
+		moves->rb--;
+		moves->rr++;
 	}
-	// if (count < ft_round(lst_ind / 2.0))
-	// 	mid_n = increase_mid(s_a, min_after);
-	// else if (count > ft_round(lst_ind / 2.0))
-	// 	mid_n = decrease_mid(min_befor);
-	return (mid_n);
+	while (moves->rra && moves->rrb)
+	{
+		moves->rra--;
+		moves->rrb--;
+		moves->rrr++;
+	}
 }
 
-void	push_to_b(t_snode **s_a, t_snode **s_b)
+void	rotate(t_snode **s_a, t_snode **s_b, t_moves *moves)
 {
-	int	mid_n;
-	int	lst_ind;
-	int	lst_ind_b;
+	check_both(moves);
+	while (moves->rr--)
+		rr(s_a, s_b);
+	while (moves->rrr--)
+		rrr(s_a, s_b);
+	while (moves->ra--)
+		ra(s_a);
+	while (moves->rb--)
+		rb(s_b);	
+	while (moves->rra--)
+		rra(s_a);
+	while (moves->rrb--)
+		rrb(s_b);
+	ft_bzero(moves, sizeof(t_moves));
+}
 
-	lst_ind = get_last(*s_a)->ind;
-	mid_n = find_mid_n(*s_a, lst_ind);
-	lst_ind_b = 0;
-	while (lst_ind > 2)
+void	find_price(t_snode *stk, t_moves *moves, t_info *info_a, t_snode **cheapest)
+{	
+	int	last_ind;
+
+	last_ind = get_last(stk)->ind;
+	if (stk->ind <= ft_round(last_ind / 2))
+		moves->rb = stk->ind;
+	else
+		moves->rrb = (last_ind - stk->ind) + 1;
+	if (stk->tgt->ind <= info_a->mid_ind)
+		moves->ra = stk->tgt->ind;
+	else
+		moves->rra = (info_a->lst_ind - stk->tgt->ind) + 1;
+	if (!*cheapest || (*cheapest)->cost > stk->cost)
+		*cheapest = stk;		
+}
+
+void	push_back(t_snode **s_a, t_snode **s_b, t_info *info, t_moves *moves)
+{
+	t_snode	*cheapest;
+
+	reset_info_a(*s_a, info);
+	while (*s_b)
 	{
-		if ((*s_a)->val <= mid_n)
+		find_tgt(*s_b, *s_a, 'a');
+		find_price(*s_b, moves, info, &cheapest);
+	}
+}
+
+void	find_moves(t_snode *tgt,t_snode **stk_b, t_moves *moves)
+{
+	int	last_ind;
+
+	last_ind = get_last(*stk_b)->ind;
+	if (tgt->ind <= ft_round(last_ind / 2))
+		moves->rb = tgt->ind;
+	else
+		moves->rrb = (last_ind - tgt->ind) + 1;
+}
+
+void	push_to_b(t_snode **s_a, t_snode **s_b, t_info *info_a, t_moves *moves)
+{
+	info_a->count = 0;
+	while (info_a->lst_ind > 2 && info_a->count < info_a->mid_ind)
+	{
+		if ((*s_a)->val < info_a->mid_nb)
 		{
+			info_a->count++;
 			find_tgt(*s_a, *s_b, 'b');
-			if ((*s_a)->tgt && lst_ind_b >= 1)
+			if ((*s_a)->tgt)
 			{
-				if ((*s_a)->tgt->ind == 1)
-					sb(s_b);
-				else if ((*s_a)->tgt->ind <= lst_ind_b / 2)
-					rb(s_b);
-				else
-					rrb(s_b);
+				find_moves((*s_a)->tgt, s_b, moves);
+				rotate(s_a, s_b, moves);
 			}
 			pb(s_a, s_b);
-			lst_ind_b = get_last(*s_b)->ind;
-			lst_ind = get_last(*s_a)->ind;
-			mid_n = (get_min(*s_a) + get_max(*s_a)) / 2;
+			info_a->lst_ind = get_last(*s_a)->ind;
+		}
+		else
+			ra(s_a);
+	}
+	////// ainda tem mais de 3 e vai ate ter 3 /////////
+	while (info_a->lst_ind > 2)
+	{
+		reset_info_a(*s_a, info_a);
+		if ((*s_a)->val < info_a->mid_nb)
+		{
+			find_tgt(*s_a, *s_b, 'b');
+			// if ((*s_a)->tgt)
+			// 	rotate(s_b, (*s_a)->tgt, 'b');
+			pb(s_a, s_b);
+			info_a->lst_ind = get_last(*s_a)->ind;
 		}
 		else
 			ra(s_a);
@@ -118,8 +144,13 @@ void	push_to_b(t_snode **s_a, t_snode **s_b)
 
 void	ft_push_swap(t_snode **s_a, t_snode **s_b)
 {
-	// t_moves	moves;
+	t_moves	moves;
+	t_info	info_a;
 
-	push_to_b(s_a, s_b);
+	ft_bzero(&moves, sizeof(t_moves));
+	ft_bzero(&info_a, sizeof(t_info));
+	reset_info_a(*s_a, &info_a);
+	push_to_b(s_a, s_b, &info_a, &moves);
 	sort_three(s_a);
+	push_back(s_a, s_b, &info_a, &moves);
 }

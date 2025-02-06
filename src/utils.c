@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 18:04:29 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 18:04:29 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/01/25 18:04:29 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/06 14:38:18 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,9 @@ void	print_error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	get_min(t_snode *stk)
+int	ft_round(float i)
 {
-	int	min;
-
-	min = INT_MAX;
-	while (stk)
-	{
-		if (stk->val < min)
-			min = stk->val;
-		stk = stk->nxt;
-	}
-	return (min);
-}
-
-int	get_max(t_snode *stk)
-{
-	int	max;
-
-	max = INT_MIN;
-	while (stk)
-	{
-		if (stk->val > max)
-			max = stk->val;
-		stk = stk->nxt;
-	}
-	return (max);
+	return (i + 0.5);
 }
 
 long	ft_atol(char *str)

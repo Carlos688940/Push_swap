@@ -7,7 +7,7 @@ NAME = push_swap
 
 SRCS = src/main.c src/check_input.c src/free_utils.c src/utils.c src/stack_tools.c \
 	src/stack_tools2.c src/sort_swap.c src/sort_rotate.c src/sort_reverse_rotate.c\
-	src/sort_push.c src/push_swap.c
+	src/sort_push.c src/push_swap.c src/find_mid_nb.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = libs/Libft/libft.a
