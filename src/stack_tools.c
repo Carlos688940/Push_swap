@@ -96,6 +96,7 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 		ptr->tgt = 0;
 		ptr->val = ft_atoi(av[i]);
 		ptr->ind = i;
+		ptr->moves = 0;
 		ptr->prev = lst_node;
 		ptr->prev->nxt = ptr;
 		lst_node = ptr;

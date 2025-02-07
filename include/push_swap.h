@@ -33,7 +33,8 @@ typedef struct s_snode
 	int		val;
 	int		ind;
 	int		cost;	
-	struct s_snode	*tgt;		
+	struct s_moves	*moves;	
+	struct s_snode	*tgt;	
 	struct s_snode	*nxt;
 	struct s_snode	*prev;
 }	t_snode;
@@ -46,7 +47,14 @@ typedef struct s_info
 	int	count;
 	int	lst_ind;
 	int	mid_ind;
+	int	size;
 }	t_info;
+
+typedef struct s_lower
+{
+	t_snode *node;
+	t_moves	moves;
+}	t_lower;
 
 //----------- Check-input -------------
 char	**check_input(char **av, int ac);
@@ -80,6 +88,7 @@ void	sa(t_snode **stk);
 void	sb(t_snode **stk);
 void	ss(t_snode **s_a, t_snode **s_b);
 void	pb(t_snode **s_a, t_snode **s_b);
+void	pa(t_snode **s_a, t_snode **s_b);
 //----------- Push swap -------------
 void	ft_push_swap(t_snode **s_a, t_snode **s_b);
 void	find_mid_n(t_snode *s_a, t_info *info);

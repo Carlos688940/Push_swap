@@ -18,7 +18,8 @@ void	push(t_snode **src, t_snode **dst)
 
 	box = *src;
 	*src = (*src)->nxt;
-	(*src)->prev = NULL;
+	if (*src)
+		(*src)->prev = NULL;
 	box->nxt = *dst;
 	if (*dst)
 		(*dst)->prev = box;
