@@ -26,6 +26,8 @@ static void	swap(t_snode **stk)
 	(*stk)->nxt->prev = box;
 	(*stk)->nxt = box;
 	define_index(*stk);
+	////////////////////
+	abc += 1;
 }
 
 void	sa(t_snode **stk)
@@ -45,4 +47,5 @@ void	ss(t_snode **s_a, t_snode **s_b)
 	swap(s_a);
 	swap(s_b);
 	write (1 ,"ss\n", 3);
+	abc -= 1;
 }

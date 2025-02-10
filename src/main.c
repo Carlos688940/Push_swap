@@ -37,7 +37,16 @@ int	main(int argc, char **argv)
 		else
 			ft_push_swap(&s_a, &s_b);
 	}
-	// printf("\n\n\n%d\n", abc);
+	int i = 0;
+	printf("\n\n\n\n\n");
+	while (s_a)
+	{
+		printf("Number %i: %d\n", i, s_a->val);
+		s_a = s_a->nxt;
+		i++;
+	}
+
+	printf("\n\n\n%d\n", abc);
 	// s_b = s_a;
 	free_stack(s_a, argv, argc, 0);
 	return (0);

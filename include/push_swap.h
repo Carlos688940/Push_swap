@@ -41,13 +41,12 @@ typedef struct s_snode
 
 typedef struct s_info
 {
-	int	min;	
-	int	max;
+	int	min;
 	int	mid_nb;
+	int	max;
 	int	count;
-	int	lst_ind;
 	int	mid_ind;
-	int	size;
+	int	max_ind;
 }	t_info;
 
 typedef struct s_lower

@@ -26,6 +26,8 @@ void	push(t_snode **src, t_snode **dst)
 	*dst = box;
 	define_index(*src);
 	define_index(*dst);
+	///////////
+	abc += 1;
 }
 
 void	pb(t_snode **s_a, t_snode **s_b)
@@ -38,4 +40,6 @@ void	pa(t_snode **s_a, t_snode **s_b)
 {
 	push(s_b, s_a);
 	write(1 ,"pa\n", 3);
+	////////////////////
+	abc -= 1;
 }

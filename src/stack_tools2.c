@@ -54,11 +54,10 @@ int	get_max(t_snode *stk)
 void	reset_info_a(t_snode *s_a ,t_info *info)
 {
 	info->count = 0;	
-	info->lst_ind = get_last(s_a)->ind;
-	info->size = info->lst_ind + 1;
-	info->mid_ind = ft_round(info->lst_ind / 2.0); //////changed to 4.0 intead 2.0
+	info->max_ind = get_last(s_a)->ind;
+	info->mid_ind = (info->max_ind + 1) / 2; 
 	info->max = get_max(s_a);
 	info->min = get_min(s_a);
-	info->mid_nb = (info->min + info->max) / 2; ///// chenge 4 too
+	info->mid_nb = (info->min + info->max) / 2;
 	find_mid_n(s_a, info);
 }

@@ -23,6 +23,8 @@ static void	rotate(t_snode **stk)
 	(*stk)->prev = NULL;
 	last->nxt->nxt = NULL;
 	define_index(*stk);
+	/////////////////////7
+	abc += 1;
 }
 
 void	ra(t_snode **stk)
@@ -42,4 +44,6 @@ void	rr(t_snode **s_a, t_snode **s_b)
 	rotate(s_a);
 	rotate(s_b);
 	write(1, "rr\n", 3);
+	////////////////////
+	abc -= 1;
 }

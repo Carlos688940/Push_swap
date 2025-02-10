@@ -23,6 +23,8 @@ static void	rev_rotate(t_snode **stk)
 	(*stk)->prev = last;
 	*stk = last;
 	define_index(*stk);
+	/////////////////////7
+	abc += 1;
 }
 
 void	rra(t_snode **stk)
@@ -42,4 +44,6 @@ void	rrr(t_snode **s_a, t_snode **s_b)
 	rev_rotate(s_a);
 	rev_rotate(s_b);
 	write(1, "rrr\n", 4);
+	/////////////////////
+	abc -= 1;
 }
