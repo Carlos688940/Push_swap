@@ -12,8 +12,6 @@
 
 #include "../include/push_swap.h"
 
-#include <stdio.h>
-
 void	push_mid_nb(t_snode **s_a, t_snode **s_b, t_info *inf_a)
 {
 	while ((*s_a)->val != inf_a->mid_nb->val)
@@ -27,7 +25,7 @@ void	push_mid_nb(t_snode **s_a, t_snode **s_b, t_info *inf_a)
 	inf_a->max_ind = get_last(*s_a)->ind;
 }
 
-void	find_a_moves(t_snode *s_a, t_info *inf_a, t_lower *lower)
+void	find_a_cost(t_snode *s_a, t_info *inf_a, t_lower *lower)
 {
 	t_moves	moves;
 
@@ -71,7 +69,7 @@ void	send_half(t_snode **s_a, t_snode **s_b, t_info *inf_a, t_lower *lower)
 		while (a)
 		{
 			if (a->val < inf_a->mid_nb->val)
-				find_a_moves(a, inf_a, lower);
+				find_a_cost(a, inf_a, lower);
 			a = a->nxt;
 		}
 		rotate(s_a, s_b, &lower->moves);
@@ -95,7 +93,7 @@ void	send_second_half(t_snode **s_a, t_snode **s_b, t_info *inf_a, t_lower *lowe
 		while (a)
 		{
 			if (a->val < inf_a->mid_nb->val)
-				find_a_moves(a, inf_a, lower);
+				find_a_cost(a, inf_a, lower);
 			a = a->nxt;
 		}	
 		rotate(s_a, s_b, &lower->moves);
@@ -127,7 +125,8 @@ void	find_target(t_snode *node, t_snode *s_a)
 	{
 		while (s_a)
 		{
-			if ((!node->tgt && s_a->val > node->val) || (s_a->val > node->val && s_a->val < node->tgt->val))
+			if ((!node->tgt && s_a->val > node->val) || 
+					(s_a->val > node->val && s_a->val < node->tgt->val))
 				node->tgt = s_a;
 			s_a = s_a->nxt;
 		}
@@ -150,7 +149,7 @@ void	check_both(t_moves *moves)
 	}
 }
 
-void	find_cost(t_snode *node, t_snode **s_b, t_info *inf_a, t_lower *lower)
+void	find_b_cost(t_snode *node, t_snode **s_b, t_info *inf_a, t_lower *lower)
 {
 	int	last_ind;
 	t_moves	moves;
@@ -185,7 +184,7 @@ void	push_back(t_snode **s_a, t_snode **s_b, t_info *info, t_lower *lower)
 		{
 			b->tgt = 0;
 			find_target(b, *s_a);
-			find_cost(b, s_b, info, lower);
+			find_b_cost(b, s_b, info, lower);
 			b = b->nxt;
 		}
 		rotate(s_a, s_b, &lower->moves);
@@ -213,6 +212,4 @@ void	ft_push_swap(t_snode **s_a, t_snode **s_b)
 		else
 			rra(s_a);
 	}
-	if (check_sort(*s_a))
-		printf("yesssssssssssssssssssssssssssssss!\n");
 }
