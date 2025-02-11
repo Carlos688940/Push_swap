@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:08:10 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/06 15:50:57 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:19:56 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ typedef struct s_snode
 {
 	int		val;
 	int		ind;
-	int		cost;	
-	struct s_moves	*moves;	
+	int		cost;
 	struct s_snode	*tgt;	
 	struct s_snode	*nxt;
 	struct s_snode	*prev;
@@ -41,12 +40,12 @@ typedef struct s_snode
 
 typedef struct s_info
 {
-	int	min;
-	int	mid_nb;
-	int	max;
-	int	count;
-	int	mid_ind;
+	t_snode	*min;
+	t_snode	*max;
+	t_snode	*mid_nb;
 	int	max_ind;
+	int	mid_ind;
+	int	count;
 }	t_info;
 
 typedef struct s_lower
@@ -73,8 +72,8 @@ int	count_nodes(t_snode *stk);
 void	sort_three(t_snode **stk);
 void	define_index(t_snode *stk); 
 t_snode	*get_last(t_snode *stk);
-int	get_max(t_snode *stk);
-int	get_min(t_snode *stk);
+t_snode	*get_max(t_snode *stk);
+t_snode	*get_min(t_snode *stk);
 void	reset_info_a(t_snode *s_a ,t_info *info);
 //----------- Sort stack -------------
 void	ra(t_snode **stk);
@@ -90,6 +89,6 @@ void	pb(t_snode **s_a, t_snode **s_b);
 void	pa(t_snode **s_a, t_snode **s_b);
 //----------- Push swap -------------
 void	ft_push_swap(t_snode **s_a, t_snode **s_b);
-void	find_mid_n(t_snode *s_a, t_info *info);
+void	find_mid_n(t_snode *s_a, t_info *info, int *mid_nb);
 
 #endif

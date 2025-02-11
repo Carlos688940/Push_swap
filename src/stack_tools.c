@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:42:21 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 14:23:35 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:07:35 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sort_three(t_snode **stk)
 {
 	int	max;
 
-	max = get_max(*stk);
+	max = get_max(*stk)->val;
 	if ((*stk)->val == max)
 	{
 		ra(stk);
@@ -96,7 +96,6 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 		ptr->tgt = 0;
 		ptr->val = ft_atoi(av[i]);
 		ptr->ind = i;
-		ptr->moves = 0;
 		ptr->prev = lst_node;
 		ptr->prev->nxt = ptr;
 		lst_node = ptr;
