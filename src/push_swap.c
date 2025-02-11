@@ -12,6 +12,8 @@
 
 #include "../include/push_swap.h"
 
+#include <stdio.h>
+
 void	push_mid_nb(t_snode **s_a, t_snode **s_b, t_info *inf_a)
 {
 	while ((*s_a)->val != inf_a->mid_nb->val)
@@ -204,4 +206,13 @@ void	ft_push_swap(t_snode **s_a, t_snode **s_b)
 	push_to_b(s_a, s_b, &info_a, &lower);
 	sort_three(s_a);
 	push_back(s_a, s_b, &info_a, &lower);
+	while ((*s_a) != info_a.min)
+	{
+		if (info_a.min->ind < info_a.mid_ind)
+			ra(s_a);
+		else
+			rra(s_a);
+	}
+	if (check_sort(*s_a))
+		printf("yesssssssssssssssssssssssssssssss!\n");
 }
