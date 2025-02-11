@@ -45,7 +45,6 @@ int	main(int argc, char **argv)
 		s_a = s_a->nxt;
 		i++;
 	}
-
 	printf("\n\n\n%d\n", abc);
 	// s_b = s_a;
 	free_stack(s_a, argv, argc, 0);
