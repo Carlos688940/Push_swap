@@ -8,9 +8,11 @@ NAME_BNS = checker
 
 SRCS = src/main.c src/check_input.c src/free_utils.c src/utils.c\
        src/stack_tools.c src/stack_tools2.c src/push_swap.c src/push_swap_utils.c src/managing_moves.c\
-       src/mov_push.c src/mov_reverse_rotate.c src/mov_rotate.c src/mov_swap.c src/find_mid_nb.c
+       src/mov_push.c src/mov_reverse_rotate.c src/mov_rotate.c src/mov_swap.c src/find_mid_nb.c 
 
-BNS_SRC = bonus/main_bonus.c bonus/check_input_bonus.c bonus/free_utils_bonus.c bonus/utils_bonus.c
+BNS_SRC = bonus/main_bonus.c bonus/check_input_bonus.c bonus/free_utils_bonus.c bonus/utils_bonus.c\
+	  bonus/mov_push_bonus.c bonus/mov_reverse_rotate_bonus.c bonus/mov_rotate_bonus.c bonus/mov_swap_bonus.c\
+	  bonus/stack_tools_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BNS = $(BNS_SRC:.c=.o)

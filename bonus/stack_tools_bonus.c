@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils_bonus.c                                 :+:      :+:    :+:   */
+/*   stack_tools_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 14:25:23 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 14:25:55 by carlaugu         ###   ########.fr       */
+/*   Created: 2025-02-12 19:01:37 by carlaugu          #+#    #+#             */
+/*   Updated: 2025-02-12 19:01:37 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap_bonus.h"
 
-void	free_splt_bns(char **av, int ac, int check)
+void	define_index_bns(t_snode *stk)
 {
 	int	i;
 
-	i = 0;
-	if (ac == 2)
-	{
-		while (av[i])
-			free(av[i++]);
-		free (av);
-	}
-	if (check)
-		print_error_bns();
-}
-
-void	free_stack_bns(t_snode *stk, char **av, int ac, int i)
-{
-	t_snode	*box;
-
+	i = -1;
 	while (stk)
 	{
-		box = stk->nxt;
-		free (stk);
-		stk = box;
+		stk->ind = ++i;
+		stk = stk->nxt;
 	}
-	free_splt_bns(av, ac, i);
+}
+
+t_snode	*get_last_bns(t_snode *stk)
+{
+	while (stk)
+	{
+		if (!stk->nxt)
+			break ;
+		stk = stk->nxt;
+	}
+	return (stk);
 }

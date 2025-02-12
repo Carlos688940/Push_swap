@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mov_swap.c                                         :+:      :+:    :+:   */
+/*   mov_swap_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 20:44:52 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:47:11 by carlaugu         ###   ########.fr       */
+/*   Created: 2025-02-12 18:46:39 by carlaugu          #+#    #+#             */
+/*   Updated: 2025-02-12 18:46:39 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/push_swap_bonus.h"
 
-static void	swap(t_snode **stk)
+static void	swap_bns(t_snode **stk)
 {
 	t_snode	*box;
 
@@ -24,24 +24,24 @@ static void	swap(t_snode **stk)
 	if ((*stk)->nxt)
 		(*stk)->nxt->prev = box;
 	(*stk)->nxt = box;
-	define_index(*stk);
+	define_index_bns(*stk);
 }
 
 void	sa(t_snode **stk)
 {
-	swap(stk);
+	swap_bns(stk);
 	write (1, "sa\n", 3);
 }
 
 void	sb(t_snode **stk)
 {
-	swap(stk);
+	swap_bns(stk);
 	write (1, "sb\n", 3);
 }
 
 void	ss(t_snode **s_a, t_snode **s_b)
 {
-	swap(s_a);
-	swap(s_b);
+	swap_bns(s_a);
+	swap_bns(s_b);
 	write (1, "ss\n", 3);
 }

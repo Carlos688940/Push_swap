@@ -106,9 +106,9 @@ void	push_mid_nb(t_snode **s_a, t_snode **s_b, t_info *inf_a);
 /* -------------------------------------------------------------------------- */
 /*                                    Moves                                   */
 /* -------------------------------------------------------------------------- */
+void	rotate_stks(t_snode **s_a, t_snode **s_b, t_moves *moves);
 void	find_a_cost(t_snode *s_a, t_info *inf_a, t_lower *lower);
 void	find_b_cost(t_snode *node, t_snode **s_b, t_info *inf_a, \
 						t_lower *lower);
-void	rotate_stks(t_snode **s_a, t_snode **s_b, t_moves *moves);
 
 #endif
