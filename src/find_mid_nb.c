@@ -6,42 +6,42 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:28:11 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/11 13:20:02 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:33:34 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static	void	increase_mid(t_snode *s_a, int new_mid, t_info *info, int *mid_nb)
+static	void	increase_mid(t_snode *s_a, int new, t_info *info, int *mid)
 {
-	int	nb_nxt;
+	int		nb_nxt;
 	t_snode	*a;
 
-	*mid_nb = new_mid;
+	*mid = new;
 	while (info->count < info->mid_ind)
 	{
 		nb_nxt = INT_MAX;
-		info->count = 0;	
+		info->count = 0;
 		a = s_a;
 		while (a)
 		{
-			if (a->val > *mid_nb && a->val < nb_nxt) 
+			if (a->val > *mid && a->val < nb_nxt)
 				nb_nxt = a->val;
-			if (a->val < *mid_nb)
+			if (a->val < *mid)
 				info->count++;
-			a = a->nxt;		
+			a = a->nxt;
 		}
 		if (info->count < info->mid_ind)
-			*mid_nb = nb_nxt;
+			*mid = nb_nxt;
 	}
 }
 
-static	void	decrease_mid(t_snode *s_a, int new_mid, t_info *info, int *mid_nb)
+static	void	decrease_mid(t_snode *s_a, int new, t_info *info, int *mid)
 {
 	t_snode	*a;
-	int	nb_prev;
+	int		nb_prev;
 
-	*mid_nb = new_mid;
+	*mid = new;
 	while (info->count > info->mid_ind)
 	{
 		nb_prev = INT_MIN;
@@ -49,21 +49,21 @@ static	void	decrease_mid(t_snode *s_a, int new_mid, t_info *info, int *mid_nb)
 		a = s_a;
 		while (a)
 		{
-			if (a->val < *mid_nb && a->val > nb_prev)
+			if (a->val < *mid && a->val > nb_prev)
 				nb_prev = a->val;
-			if (a->val < *mid_nb)
+			if (a->val < *mid)
 				info->count++;
-			a= a->nxt;
+			a = a->nxt;
 		}
 		if (info->count > info->mid_ind)
-			*mid_nb = nb_prev;
+			*mid = nb_prev;
 	}
 }
 
 void	find_mid_n(t_snode *s_a, t_info *info, int *mid_nb)
 {
-	int	nb_prev;
-	int	nb_nxt;
+	int		nb_prev;
+	int		nb_nxt;
 	t_snode	*a;
 
 	nb_prev = INT_MIN;

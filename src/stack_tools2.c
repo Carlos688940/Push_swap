@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:53:54 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/11 13:21:01 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:41:40 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_snode	*get_last(t_snode *stk)
 	while (stk)
 	{
 		if (!stk->nxt)
-			break;
+			break ;
 		stk = stk->nxt;
 	}
 	return (stk);
@@ -51,7 +51,7 @@ t_snode	*get_max(t_snode *stk)
 	return (max);
 }
 
-void	reset_info_a(t_snode *s_a ,t_info *info)
+void	reset_info_a(t_snode *s_a, t_info *info)
 {
 	int	mid_nb;
 
@@ -67,7 +67,7 @@ void	reset_info_a(t_snode *s_a ,t_info *info)
 		if (s_a->val == mid_nb)
 		{
 			info->mid_nb = s_a;
-			break;
+			break ;
 		}
 		s_a = s_a->nxt;
 	}

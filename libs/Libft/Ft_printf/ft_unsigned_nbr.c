@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   ft_unsigned_nbr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 18:02:46 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:34:07 by carlaugu         ###   ########.fr       */
+/*   Created: 2024/11/04 21:56:40 by carlaugu          #+#    #+#             */
+/*   Updated: 2024/11/04 22:11:40 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "ft_printf.h"
 
-void	free_splt(char **av, int ac, int check)
+int	ft_unsigned_nbr(unsigned int n, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (ac == 2)
-	{
-		while (av[i])
-			free(av[i++]);
-		free (av);
-	}
-	if (check)
-		print_error();
-}
-
-void	free_stack(t_snode *stk, char **av, int ac, int i)
-{
-	t_snode	*box;
-
-	while (stk)
-	{
-		box = stk->nxt;
-		free (stk);
-		stk = box;
-	}
-	free_splt(av, ac, i);
+	if (n > 9)
+		i = ft_unsigned_nbr(n / 10, fd);
+	i = i + ft_char_fd("0123456789"[n % 10], fd);
+	return (i);
 }

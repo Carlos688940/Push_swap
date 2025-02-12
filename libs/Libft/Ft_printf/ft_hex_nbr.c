@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   ft_hex_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 18:02:46 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:34:07 by carlaugu         ###   ########.fr       */
+/*   Created: 2024/11/05 14:05:42 by carlaugu          #+#    #+#             */
+/*   Updated: 2024/11/05 14:06:14 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "ft_printf.h"
 
-void	free_splt(char **av, int ac, int check)
+int	ft_hexlower_nbr(unsigned int n, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (ac == 2)
-	{
-		while (av[i])
-			free(av[i++]);
-		free (av);
-	}
-	if (check)
-		print_error();
+	if (n >= 16)
+		i = ft_hexlower_nbr(n / 16, fd);
+	i = i + ft_char_fd("0123456789abcdef"[n % 16], fd);
+	return (i);
 }
 
-void	free_stack(t_snode *stk, char **av, int ac, int i)
+int	ft_hexupper_nbr(unsigned int n, int fd)
 {
-	t_snode	*box;
+	int	i;
 
-	while (stk)
-	{
-		box = stk->nxt;
-		free (stk);
-		stk = box;
-	}
-	free_splt(av, ac, i);
+	i = 0;
+	if (n >= 16)
+		i = ft_hexupper_nbr(n / 16, fd);
+	i = i + ft_char_fd("0123456789ABCDEF"[n % 16], fd);
+	return (i);
 }

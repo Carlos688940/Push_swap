@@ -1,40 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 12:14:13 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:22:19 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/02/12 14:20:50 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/12 14:23:44 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+void	print_error_bns(void)
 {
-	t_snode	*s_a;
-	t_snode	*s_b;
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
+}
 
-	s_a = NULL;
-	s_b = NULL;
-	(void)s_b;
-	if (argc == 1 || !argv[1][0])
-		return (1);
-	argv = check_input(argv + 1, argc);
-	stack_a_init(&s_a, argv, argc);
-	if (!check_sort(s_a))
+long	ft_atol_bns(char *str)
+{
+	long	result;
+	long	i;
+	int		sign;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '+')
+		i++;
+	if (str[i] == '-')
 	{
-		if (count_nodes(s_a) == 2 && s_a->val > s_a->nxt->val)
-			sa(&s_a);
-		else if (count_nodes(s_a) == 3)
-			sort_three(&s_a);
-		else
-			ft_push_swap(&s_a, &s_b);
+		sign = -sign;
+		i++;
 	}
-	free_stack(s_a, argv, argc, 0);
+	while (ft_isdigit(str[i]))
+		result = result * 10 + (str[i++] - '0');
+	return (result * sign);
+}
+
+int	ft_is_signal_bns(char c)
+{
+	if (c == '-' || c == '+')
+		return (1);
 	return (0);
 }

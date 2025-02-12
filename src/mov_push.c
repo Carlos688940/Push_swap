@@ -1,51 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_swap.c                                        :+:      :+:    :+:   */
+/*   mov_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 20:44:52 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 11:16:10 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/02/05 13:10:38 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/12 11:46:15 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-#include <stdio.h>
-
-static void	swap(t_snode **stk)
+void	push(t_snode **src, t_snode **dst)
 {
 	t_snode	*box;
 
-	box = *stk;
-	*stk = (*stk)->nxt;
-	(*stk)->prev = NULL;
-	box->nxt = (*stk)->nxt;
-	box->prev = *stk;
-	(*stk)->nxt->prev = box;
-	(*stk)->nxt = box;
-	define_index(*stk);
-	////////////////////
-	abc += 1;
+	box = *src;
+	*src = (*src)->nxt;
+	if (*src)
+		(*src)->prev = NULL;
+	box->nxt = *dst;
+	if (*dst)
+		(*dst)->prev = box;
+	*dst = box;
+	define_index(*src);
+	define_index(*dst);
 }
 
-void	sa(t_snode **stk)
+void	pb(t_snode **s_a, t_snode **s_b)
 {
-	swap(stk);
-	write (1, "sa\n", 3);
+	push(s_a, s_b);
+	write(1, "pb\n", 3);
 }
 
-void	sb(t_snode **stk)
+void	pa(t_snode **s_a, t_snode **s_b)
 {
-	swap(stk);
-	write (1, "sb\n", 3);
-}
-
-void	ss(t_snode **s_a, t_snode **s_b)
-{
-	swap(s_a);
-	swap(s_b);
-	write (1 ,"ss\n", 3);
-	abc -= 1;
+	push(s_b, s_a);
+	write(1, "pa\n", 3);
 }

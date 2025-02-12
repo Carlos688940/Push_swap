@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:42:21 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:07:35 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:38:03 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ void	sort_three(t_snode **stk)
 	if ((*stk)->val == max)
 	{
 		ra(stk);
-		if((*stk)->val > (*stk)->nxt->val)
+		if ((*stk)-> val > (*stk)->nxt->val)
 			sa(stk);
 	}
 	else if ((*stk)->nxt->val == max)
 	{
 		rra(stk);
-		if((*stk)->val > (*stk)->nxt->val)
+		if ((*stk)->val > (*stk)->nxt->val)
 			sa(stk);
 	}
 	else
 	{
-		if((*stk)->val > (*stk)->nxt->val)	
+		if ((*stk)->val > (*stk)->nxt->val)
 			sa(stk);
 	}
 }
-	
+
 int	count_nodes(t_snode *stk)
 {
 	int	count;
@@ -76,7 +76,7 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 {
 	t_snode	*lst_node;
 	t_snode	*ptr;
-	int	i;
+	int		i;
 
 	ptr = malloc(sizeof(t_snode));
 	if (!ptr)
@@ -92,8 +92,6 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 		if (!ptr)
 			free_stack(*s_a, av, ac, 1);
 		ft_bzero(ptr, sizeof(t_snode));
-		ptr->cost = 0;
-		ptr->tgt = 0;
 		ptr->val = ft_atoi(av[i]);
 		ptr->ind = i;
 		ptr->prev = lst_node;

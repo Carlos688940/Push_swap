@@ -1,49 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_reverse_rotate.c                              :+:      :+:    :+:   */
+/*   mov_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 20:31:04 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 11:14:33 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/02/04 20:44:52 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/12 11:47:11 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	rev_rotate(t_snode **stk)
-{
-	t_snode	*last;
+#include <stdio.h>
 
-	last = get_last(*stk);
-	last->nxt = *stk;
-	last->prev->nxt = NULL;
-	last->prev = NULL;
-	(*stk)->prev = last;
-	*stk = last;
+static void	swap(t_snode **stk)
+{
+	t_snode	*box;
+
+	box = *stk;
+	*stk = (*stk)->nxt;
+	(*stk)->prev = NULL;
+	box->nxt = (*stk)->nxt;
+	box->prev = *stk;
+	(*stk)->nxt->prev = box;
+	(*stk)->nxt = box;
 	define_index(*stk);
-	/////////////////////7
-	abc += 1;
 }
 
-void	rra(t_snode **stk)
+void	sa(t_snode **stk)
 {
-	rev_rotate(stk);
-	write(1, "rra\n", 4);
+	swap(stk);
+	write (1, "sa\n", 3);
 }
 
-void	rrb(t_snode **stk)
+void	sb(t_snode **stk)
 {
-	rev_rotate(stk);
-	write(1, "rrb\n", 4);
+	swap(stk);
+	write (1, "sb\n", 3);
 }
 
-void	rrr(t_snode **s_a, t_snode **s_b)
+void	ss(t_snode **s_a, t_snode **s_b)
 {
-	rev_rotate(s_a);
-	rev_rotate(s_b);
-	write(1, "rrr\n", 4);
-	/////////////////////
-	abc -= 1;
+	swap(s_a);
+	swap(s_b);
+	write (1, "ss\n", 3);
 }

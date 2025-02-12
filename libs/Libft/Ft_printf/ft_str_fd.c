@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   ft_str_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 18:02:46 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:34:07 by carlaugu         ###   ########.fr       */
+/*   Created: 2024/11/02 12:35:37 by carlaugu          #+#    #+#             */
+/*   Updated: 2024/11/05 18:12:27 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "ft_printf.h"
 
-void	free_splt(char **av, int ac, int check)
+int	ft_str_fd(char *s, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (ac == 2)
+	if (!s)
+		return (ft_str_fd("(null)", 1));
+	while (s[i])
 	{
-		while (av[i])
-			free(av[i++]);
-		free (av);
+		write (fd, &s[i], 1);
+		i++;
 	}
-	if (check)
-		print_error();
-}
-
-void	free_stack(t_snode *stk, char **av, int ac, int i)
-{
-	t_snode	*box;
-
-	while (stk)
-	{
-		box = stk->nxt;
-		free (stk);
-		stk = box;
-	}
-	free_splt(av, ac, i);
+	return (i);
 }

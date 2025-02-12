@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   ft_pointer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 18:02:46 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:34:07 by carlaugu         ###   ########.fr       */
+/*   Created: 2024/11/04 13:57:05 by carlaugu          #+#    #+#             */
+/*   Updated: 2024/11/04 23:13:27 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "ft_printf.h"
 
-void	free_splt(char **av, int ac, int check)
+static int	ft_putpointer(unsigned long long n, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (ac == 2)
-	{
-		while (av[i])
-			free(av[i++]);
-		free (av);
-	}
-	if (check)
-		print_error();
+	if (n >= 16)
+		i = ft_putpointer(n / 16, fd);
+	i = i + ft_char_fd("0123456789abcdef"[n % 16], fd);
+	return (i);
 }
 
-void	free_stack(t_snode *stk, char **av, int ac, int i)
+int	ft_pointer(unsigned long long n, int fd)
 {
-	t_snode	*box;
+	int	i;
 
-	while (stk)
+	if (n == 0)
+		return (ft_str_fd("(nil)", fd));
+	else
 	{
-		box = stk->nxt;
-		free (stk);
-		stk = box;
+		i = ft_str_fd("0x", fd);
+		i += ft_putpointer(n, fd);
 	}
-	free_splt(av, ac, i);
+	return (i);
 }

@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_push.c                                        :+:      :+:    :+:   */
+/*   mov_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 13:10:38 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/05 14:25:49 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/02/04 19:30:01 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/12 11:46:52 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	push(t_snode **src, t_snode **dst)
+static void	rotate(t_snode **stk)
 {
-	t_snode	*box;
+	t_snode	*last;
 
-	box = *src;
-	*src = (*src)->nxt;
-	if (*src)
-		(*src)->prev = NULL;
-	box->nxt = *dst;
-	if (*dst)
-		(*dst)->prev = box;
-	*dst = box;
-	define_index(*src);
-	define_index(*dst);
-	///////////
-	abc += 1;
+	last = get_last(*stk);
+	last->nxt = *stk;
+	(*stk)->prev = last;
+	*stk = (*stk)->nxt;
+	(*stk)->prev = NULL;
+	last->nxt->nxt = NULL;
+	define_index(*stk);
 }
 
-void	pb(t_snode **s_a, t_snode **s_b)
+void	ra(t_snode **stk)
 {
-	push(s_a, s_b);
-	write(1 ,"pb\n", 3);
+	rotate(stk);
+	write(1, "ra\n", 3);
 }
 
-void	pa(t_snode **s_a, t_snode **s_b)
+void	rb(t_snode **stk)
 {
-	push(s_b, s_a);
-	write(1 ,"pa\n", 3);
-	////////////////////
-	abc -= 1;
+	rotate(stk);
+	write(1, "rb\n", 3);
+}
+
+void	rr(t_snode **s_a, t_snode **s_b)
+{
+	rotate(s_a);
+	rotate(s_b);
+	write(1, "rr\n", 3);
 }
