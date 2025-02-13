@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:14:31 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 14:43:12 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:50:19 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_snode
 	struct s_snode	*nxt;
 	struct s_snode	*prev;
 }	t_snode;
+
+typedef struct s_cmd
+{
+	char			*cmd;
+	struct s_cmd	*nxt;
+}	t_cmd;
 
 /* -------------------------------------------------------------------------- */
 /*                                 Check Input                                */
@@ -61,12 +67,13 @@ void	pa(t_snode **s_a, t_snode **s_b);
 /* -------------------------------------------------------------------------- */
 void	define_index_bns(t_snode *stk);
 void	stack_a_init_bns(t_snode **s_a, char **av, int ac);
+void	creat_list(t_cmd **list);
 t_snode	*get_last_bns(t_snode *stk);
 int		check_sort_bns(t_snode *stk_a);
-int		cmp(char *s1, char *s2, int n);
+int		cmp(char *s1, char *s2);
 /* -------------------------------------------------------------------------- */
 /*                                Manage Moves                                */
 /* -------------------------------------------------------------------------- */
-void	rotate_stks_bns(t_snode **s_a, t_snode **s_b, char **av, int ac);
+int		rotate_stks_bns(t_snode **s_a, t_snode **s_b, t_cmd *list);
 
 #endif

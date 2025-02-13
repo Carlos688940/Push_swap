@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:01:37 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 14:41:50 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:30:09 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	check_sort_bns(t_snode *stk_a)
 	return (1);
 }
 
-int	cmp(char *s1, char *s2, int n)
+int	cmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	while (s1[i] || s2[i])
 	{
 		if ((unsigned char)s1[i] != (unsigned char)s2[i])
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);

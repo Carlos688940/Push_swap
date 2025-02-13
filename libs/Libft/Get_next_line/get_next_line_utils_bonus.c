@@ -6,13 +6,13 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:31:35 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/01/22 11:46:14 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:49:14 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	*ft_calloc(size_t n, size_t size)
+void	*ft_calloc_gnl(size_t n, size_t size)
 {
 	size_t	len;
 	size_t	i;
@@ -72,7 +72,7 @@ char	*ft_clean_save(char *save)
 	while (save[i] && save[i] != '\n')
 		i++;
 	len = ft_strlen_gnl(save) - i;
-	new_save = ft_calloc(len + (len == 0), sizeof(char));
+	new_save = ft_calloc_gnl(len + (len == 0), sizeof(char));
 	if (!new_save)
 	{
 		free (save);

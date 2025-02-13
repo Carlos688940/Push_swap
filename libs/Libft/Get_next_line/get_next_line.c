@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:57:48 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/01/22 11:44:46 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:49:14 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_first_check(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	read = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	read = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	return (read);
 }
 
@@ -61,7 +61,7 @@ char	*ft_create_save(char *read, char *save)
 	if (!*read)
 		return (save);
 	len = ft_strlen_gnl(read) + ft_strlen_gnl(save);
-	save_buf = ft_calloc(len + 1, sizeof(char));
+	save_buf = ft_calloc_gnl(len + 1, sizeof(char));
 	if (!save_buf)
 		return (NULL);
 	i = 0;
@@ -91,7 +91,7 @@ char	*ft_create_line(char *save)
 	while (save[len] && save[len] != '\n')
 		len++;
 	len += (save[len] == '\n');
-	line = ft_calloc(len + 1, sizeof(char));
+	line = ft_calloc_gnl(len + 1, sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -115,7 +115,7 @@ char	*ft_clean_save(char *save)
 	while (save[i] && save[i] != '\n')
 		i++;
 	len = ft_strlen_gnl(save) - i;
-	new_save = ft_calloc(len + (len == 0), sizeof(char));
+	new_save = ft_calloc_gnl(len + (len == 0), sizeof(char));
 	if (!new_save)
 	{
 		free (save);

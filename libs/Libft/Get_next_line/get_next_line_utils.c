@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:57:55 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/01/22 11:44:58 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:49:14 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_strlen_gnl(char *s)
 	return (i);
 }
 
-void	*ft_calloc(size_t n, size_t size)
+void	*ft_calloc_gnl(size_t n, size_t size)
 {
 	size_t	len;
 	size_t	i;
