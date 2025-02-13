@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-25 14:47:12 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-01-25 14:47:12 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/01/25 14:47:12 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/13 14:42:40 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	check_sintax(char *str)
 	while (*str)
 	{
 		if (!ft_isdigit(*str) && !ft_is_signal(*str))
+			return (0);
+		if (ft_is_signal(*str) && !ft_isdigit(*(str + 1)))
 			return (0);
 		str++;
 	}
@@ -59,7 +61,11 @@ char	**check_input(char **av, int ac)
 	int	i;
 
 	if (ac == 2)
+	{
 		av = ft_split(av[0], ' ');
+		if (!*av)
+			free_splt(av, ac, 1);
+	}
 	i = -1;
 	while (av[++i])
 	{

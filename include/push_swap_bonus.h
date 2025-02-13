@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:14:31 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 14:27:39 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:43:12 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	free_stack_bns(t_snode *stk, char **av, int ac, int i);
 /*                                    Utils                                   */
 /* -------------------------------------------------------------------------- */
 long	ft_atol_bns(char *str);
-int	ft_is_signal_bns(char c);
 void	print_error_bns(void);
+int		ft_is_signal_bns(char c);
 /* -------------------------------------------------------------------------- */
-/*                                 Sort stacks                                */
+/*                                 Stack Moves                                */
 /* -------------------------------------------------------------------------- */
 void	ra(t_snode **stk);
 void	rb(t_snode **stk);
@@ -56,11 +56,17 @@ void	sb(t_snode **stk);
 void	ss(t_snode **s_a, t_snode **s_b);
 void	pb(t_snode **s_a, t_snode **s_b);
 void	pa(t_snode **s_a, t_snode **s_b);
-
 /* -------------------------------------------------------------------------- */
-/*                                 stack tools                                */
+/*                                 Stack Tools                                */
 /* -------------------------------------------------------------------------- */
 void	define_index_bns(t_snode *stk);
+void	stack_a_init_bns(t_snode **s_a, char **av, int ac);
 t_snode	*get_last_bns(t_snode *stk);
+int		check_sort_bns(t_snode *stk_a);
+int		cmp(char *s1, char *s2, int n);
+/* -------------------------------------------------------------------------- */
+/*                                Manage Moves                                */
+/* -------------------------------------------------------------------------- */
+void	rotate_stks_bns(t_snode **s_a, t_snode **s_b, char **av, int ac);
 
 #endif

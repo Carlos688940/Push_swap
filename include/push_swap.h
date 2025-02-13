@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:08:10 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 14:21:54 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:20:25 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	free_stack(t_snode *stk, char **av, int ac, int i);
 int		ft_is_signal(char c);
 long	ft_atol(char *str);
 /* ------------------------------------------------------------------------*/
-/*                                 Stack_tools                             */
+/*                                 Stack_Tools                             */
 /* ------------------------------------------------------------------------*/
 int		check_sort(t_snode *stk_a);
 int		count_nodes(t_snode *stk);
@@ -83,7 +83,7 @@ t_snode	*get_last(t_snode *stk);
 t_snode	*get_max(t_snode *stk);
 t_snode	*get_min(t_snode *stk);
 /* -------------------------------------------------------------------------- */
-/*                                 Sort stack                                 */
+/*                                 Stack Moves                                */
 /* -------------------------------------------------------------------------- */
 void	ra(t_snode **stk);
 void	rb(t_snode **stk);
@@ -97,14 +97,14 @@ void	ss(t_snode **s_a, t_snode **s_b);
 void	pb(t_snode **s_a, t_snode **s_b);
 void	pa(t_snode **s_a, t_snode **s_b);
 /* -------------------------------------------------------------------------- */
-/*                                  Push swap                                 */
+/*                                  Push Swap                                 */
 /* -------------------------------------------------------------------------- */
 void	ft_push_swap(t_snode **s_a, t_snode **s_b);
 void	find_mid_n(t_snode *s_a, t_info *info, int *mid_nb);
 void	find_target(t_snode *node, t_snode *s_a);
 void	push_mid_nb(t_snode **s_a, t_snode **s_b, t_info *inf_a);
 /* -------------------------------------------------------------------------- */
-/*                                    Moves                                   */
+/*                             Manage Moves                                   */
 /* -------------------------------------------------------------------------- */
 void	rotate_stks(t_snode **s_a, t_snode **s_b, t_moves *moves);
 void	find_a_cost(t_snode *s_a, t_info *inf_a, t_lower *lower);

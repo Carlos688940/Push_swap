@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:11:07 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 14:28:23 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:41:40 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	check_sintax(char *str)
 	while (*str)
 	{
 		if (!ft_isdigit(*str) && !ft_is_signal_bns(*str))
+			return (0);
+		if (ft_is_signal_bns(*str) && !ft_isdigit(*(str + 1)))
 			return (0);
 		str++;
 	}
@@ -59,7 +61,11 @@ char	**check_input_bns(char **av, int ac)
 	int	i;
 
 	if (ac == 2)
+	{
 		av = ft_split(av[0], ' ');
+		if (!*av)
+			free_splt_bns(av, ac, 1);
+	}
 	i = -1;
 	while (av[++i])
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mov_push_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42.fr>          #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-12 18:46:09 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-02-12 18:46:09 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/02/12 18:46:09 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/02/13 11:44:53 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ void	push_bns(t_snode **src, t_snode **dst)
 void	pb(t_snode **s_a, t_snode **s_b)
 {
 	push_bns(s_a, s_b);
-	write(1, "pb\n", 3);
 }
 
 void	pa(t_snode **s_a, t_snode **s_b)
 {
 	push_bns(s_b, s_a);
-	write(1, "pa\n", 3);
 }
