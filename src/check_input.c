@@ -14,6 +14,8 @@
 
 static int	check_sintax(char *str)
 {
+	if (!*str)
+		return (0);
 	while (*str)
 	{
 		if (!ft_isdigit(*str) && !ft_is_signal(*str))
@@ -40,14 +42,13 @@ static	int	check_duplicate(char **av, int ac)
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (av[j])
 	{
-		i = j;
-		while (av[j] && av[i + 1])
+		i = j + 1;
+		while (av[j] && av[i])
 		{
-			if (ft_atol(av[j]) == ft_atol(av [i + 1]))
+			if (ft_atol(av[j]) == ft_atol(av[i]))
 				free_splt(av, ac, 1);
 			i++;
 		}

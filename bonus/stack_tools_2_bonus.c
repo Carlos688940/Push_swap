@@ -12,37 +12,25 @@
 
 #include "../include/push_swap_bonus.h"
 
-static	void	check_list(t_cmd **list, t_cmd *ptr)
-{
-	if (!*list)
-		*list = ptr;
-}
-
-void	creat_list(t_cmd **list)
+void	creat_list(t_cmd **list, char **av, int ac)
 {
 	char	*cmd;
 	t_cmd	*ptr;
 	t_cmd	*prev;
 
 	cmd = get_next_line(STDIN_FILENO);
-	ptr = NULL;
 	prev = NULL;
 	while (cmd)
 	{
-		while (ptr)
-		{
-			prev = ptr;
-			ptr = ptr->nxt;
-		}
+		ptr = ft_calloc(1, sizeof(t_cmd));
 		if (!ptr)
-		{
-			ptr = ft_calloc(1, sizeof(t_cmd));
-			ptr->cmd = cmd;
-			if (prev)
-				prev->nxt = ptr;
-			check_list(list, ptr);
-		}
+			free_list(*list, av, ac);
+		ptr->cmd = cmd;
+		if (!prev)
+			*list = ptr;
+		else
+			prev->nxt = ptr;
 		cmd = get_next_line(STDIN_FILENO);
-		ptr = *list;
+		prev = ptr;
 	}
 }

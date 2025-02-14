@@ -12,8 +12,10 @@
 
 #include "../include/push_swap_bonus.h"
 
-static int	check_sintax(char *str)
+static int	check_sintax_bns(char *str)
 {
+	if (!*str)
+		return (0);
 	while (*str)
 	{
 		if (!ft_isdigit(*str) && !ft_is_signal_bns(*str))
@@ -25,7 +27,7 @@ static int	check_sintax(char *str)
 	return (1);
 }
 
-static	int	check_int(char *str)
+static	int	check_int_bns(char *str)
 {
 	long	i;
 
@@ -35,19 +37,18 @@ static	int	check_int(char *str)
 	return (1);
 }
 
-static	int	check_duplicate(char **av, int ac)
+static	int	check_duplicate_bns(char **av, int ac)
 {
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (av[j])
 	{
-		i = j;
-		while (av[j] && av[i + 1])
+		i = j + 1;
+		while (av[j] && av[i])
 		{
-			if (ft_atol_bns(av[j]) == ft_atol_bns(av [i + 1]))
+			if (ft_atol_bns(av[j]) == ft_atol_bns(av[i]))
 				free_splt_bns(av, ac, 1);
 			i++;
 		}
@@ -69,9 +70,9 @@ char	**check_input_bns(char **av, int ac)
 	i = -1;
 	while (av[++i])
 	{
-		if (!check_sintax(av[i]) || !check_int(av[i]))
+		if (!check_sintax_bns(av[i]) || !check_int_bns(av[i]))
 			free_splt_bns(av, ac, 1);
 	}
-	check_duplicate(av, ac);
+	check_duplicate_bns(av, ac);
 	return (av);
 }

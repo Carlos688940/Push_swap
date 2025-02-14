@@ -21,11 +21,11 @@ int	main(int argc, char **argv)
 	s_a = NULL;
 	s_b = NULL;
 	list = NULL;
-	if (argc == 1 || !argv[1][0])
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	argv = check_input_bns(argv + 1, argc);
+	creat_list(&list, argv, argc);
 	stack_a_init_bns(&s_a, argv, argc);
-	creat_list(&list);
 	if (rotate_stks_bns(&s_a, &s_b, list))
 		free_stack_bns(s_a, argv, argc, 1);
 	if (check_sort_bns(s_a) && !s_b)

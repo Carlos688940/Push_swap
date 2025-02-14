@@ -39,3 +39,17 @@ void	free_stack_bns(t_snode *stk, char **av, int ac, int i)
 	}
 	free_splt_bns(av, ac, i);
 }
+
+void	free_list(t_cmd *list, char **av, int ac)
+{
+	t_cmd *box;
+
+	while (list)
+	{
+		box = list->nxt;
+		free(list->cmd);
+		free(list);
+		list = box;
+	}
+	free_splt_bns(av, ac, 1);
+}

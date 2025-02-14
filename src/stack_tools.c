@@ -78,24 +78,22 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 	t_snode	*ptr;
 	int		i;
 
-	ptr = malloc(sizeof(t_snode));
-	if (!ptr)
-		free_splt(av, ac, 1);
-	ft_bzero(ptr, sizeof(t_snode));
-	ptr->val = ft_atoi(av[0]);
-	*s_a = ptr;
-	lst_node = *s_a;
-	i = 0;
+	i = -1;
 	while (av[++i])
 	{
 		ptr = malloc(sizeof(t_snode));
 		if (!ptr)
 			free_stack(*s_a, av, ac, 1);
+		if (!*s_a)
+			*s_a = ptr;
 		ft_bzero(ptr, sizeof(t_snode));
 		ptr->val = ft_atoi(av[i]);
 		ptr->ind = i;
-		ptr->prev = lst_node;
-		ptr->prev->nxt = ptr;
+		if (lst_node)
+		{
+			ptr->prev  = lst_node;
+			ptr->prev->nxt = ptr;
+		}
 		lst_node = ptr;
 	}
 }

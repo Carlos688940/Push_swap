@@ -21,8 +21,7 @@ int	main(int argc, char **argv)
 
 	s_a = NULL;
 	s_b = NULL;
-	(void)s_b;
-	if (argc == 1 || !argv[1][0])
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	argv = check_input(argv + 1, argc);
 	stack_a_init(&s_a, argv, argc);
