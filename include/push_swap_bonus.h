@@ -42,7 +42,8 @@ char	**check_input_bns(char **av, int ac);
 /* -------------------------------------------------------------------------- */
 void	free_splt_bns(char **av, int ac, int check);
 void	free_stack_bns(t_snode *stk, char **av, int ac, int i);
-void	free_list(t_cmd *list, char **av, int ac);
+void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a, t_snode *s_b);
+void	free_stk_b(t_snode *s_b);
 /* -------------------------------------------------------------------------- */
 /*                                    Utils                                   */
 /* -------------------------------------------------------------------------- */
@@ -68,13 +69,13 @@ void	pa(t_snode **s_a, t_snode **s_b);
 /* -------------------------------------------------------------------------- */
 void	define_index_bns(t_snode *stk);
 void	stack_a_init_bns(t_snode **s_a, char **av, int ac);
-void	creat_list(t_cmd **list, char **av, int ac);
+int	creat_list(t_cmd **list);
 t_snode	*get_last_bns(t_snode *stk);
 int		check_sort_bns(t_snode *stk_a);
 int		cmp(char *s1, char *s2);
 /* -------------------------------------------------------------------------- */
 /*                                Manage Moves                                */
 /* -------------------------------------------------------------------------- */
-int		rotate_stks_bns(t_snode **s_a, t_snode **s_b, t_cmd *list);
+int		rotate_stks_bns(t_snode **s_a, t_snode **s_b, t_cmd **list);
 
 #endif

@@ -50,30 +50,30 @@ static void	moves_push(t_snode **s_a, t_snode **s_b, char *cmd)
 		pb(s_a, s_b);
 }
 
-int	rotate_stks_bns(t_snode **s_a, t_snode **s_b, t_cmd *lst)
+int	rotate_stks_bns(t_snode **s_a, t_snode **s_b, t_cmd **lst)
 {
 	t_cmd	*box;
 
 	box = NULL;
-	while (lst)
+	while (*lst)
 	{
-		if (!cmp(lst->cmd, "sa\n") || !cmp(lst->cmd, "sb\n") \
-								|| !cmp(lst->cmd, "ss\n"))
-			moves_swap(s_a, s_b, lst->cmd);
-		else if (!cmp(lst->cmd, "ra\n") || !cmp(lst->cmd, "rb\n") \
-								|| !cmp(lst->cmd, "rr\n"))
-			moves_rotate(s_a, s_b, lst->cmd);
-		else if (!cmp(lst->cmd, "pa\n") || !cmp(lst->cmd, "pb\n"))
-			moves_push(s_a, s_b, lst->cmd);
-		else if (!cmp(lst->cmd, "rra\n") || !cmp(lst->cmd, "rrb\n") \
-								|| !cmp(lst->cmd, "rrr\n"))
-			moves_rev_rotate(s_a, s_b, lst->cmd);
+		if (!cmp((*lst)->cmd, "sa\n") || !cmp((*lst)->cmd, "sb\n") \
+								|| !cmp((*lst)->cmd, "ss\n"))
+			moves_swap(s_a, s_b, (*lst)->cmd);
+		else if (!cmp((*lst)->cmd, "ra\n") || !cmp((*lst)->cmd, "rb\n") \
+								|| !cmp((*lst)->cmd, "rr\n"))
+			moves_rotate(s_a, s_b, (*lst)->cmd);
+		else if (!cmp((*lst)->cmd, "pa\n") || !cmp((*lst)->cmd, "pb\n"))
+			moves_push(s_a, s_b, (*lst)->cmd);
+		else if (!cmp((*lst)->cmd, "rra\n") || !cmp((*lst)->cmd, "rrb\n") \
+								|| !cmp((*lst)->cmd, "rrr\n"))
+			moves_rev_rotate(s_a, s_b, (*lst)->cmd);
 		else
 			return (1);
-		box = lst->nxt;
-		free (lst->cmd);
-		free (lst);
-		lst = box;
+		box = (*lst)->nxt;
+		free ((*lst)->cmd);
+		free (*lst);
+		*lst = box;
 	}
 	return (0);
 }

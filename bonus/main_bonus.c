@@ -24,13 +24,17 @@ int	main(int argc, char **argv)
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	argv = check_input_bns(argv + 1, argc);
-	creat_list(&list, argv, argc);
+	if (!creat_list(&list))
+		free_list(list, argv, argc, s_a, s_b);
 	stack_a_init_bns(&s_a, argv, argc);
-	if (rotate_stks_bns(&s_a, &s_b, list))
-		free_stack_bns(s_a, argv, argc, 1);
+	if (rotate_stks_bns(&s_a, &s_b, &list))
+		free_list(list, argv, argc, s_a, s_b);
 	if (check_sort_bns(s_a) && !s_b)
 		ft_putstr_fd("OK\n", 1);
 	else
+	{
+		free_stk_b(s_b);
 		ft_putstr_fd("KO\n", 2);
+	}
 	free_stack_bns(s_a, argv, argc, 0);
 }

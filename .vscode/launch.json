@@ -5,7 +5,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "/home/carlaugu/42_commoncore/Push_swap/checker",
-		"args": ["5 4 3 2 1"],
+		"args": ["3 2 1 0"],
 		"stopAtEntry": false,
 		"cwd": "/home/carlaugu/42_commoncore/Push_swap",
 		"environment": [],

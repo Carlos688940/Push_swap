@@ -12,7 +12,7 @@
 
 #include "../include/push_swap_bonus.h"
 
-void	creat_list(t_cmd **list, char **av, int ac)
+int	creat_list(t_cmd **list)
 {
 	char	*cmd;
 	t_cmd	*ptr;
@@ -24,7 +24,7 @@ void	creat_list(t_cmd **list, char **av, int ac)
 	{
 		ptr = ft_calloc(1, sizeof(t_cmd));
 		if (!ptr)
-			free_list(*list, av, ac);
+			return (0);
 		ptr->cmd = cmd;
 		if (!prev)
 			*list = ptr;
@@ -33,4 +33,5 @@ void	creat_list(t_cmd **list, char **av, int ac)
 		cmd = get_next_line(STDIN_FILENO);
 		prev = ptr;
 	}
+	return (1);
 }

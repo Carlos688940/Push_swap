@@ -12,6 +12,18 @@
 
 #include "../include/push_swap_bonus.h"
 
+void	free_stk_b(t_snode *s_b)
+{
+	t_snode *box;
+
+	while (s_b)
+	{
+		box = s_b->nxt;
+		free(s_b);
+		s_b = box;
+	}
+}
+
 void	free_splt_bns(char **av, int ac, int check)
 {
 	int	i;
@@ -40,7 +52,7 @@ void	free_stack_bns(t_snode *stk, char **av, int ac, int i)
 	free_splt_bns(av, ac, i);
 }
 
-void	free_list(t_cmd *list, char **av, int ac)
+void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a, t_snode *s_b)
 {
 	t_cmd	*box;
 
@@ -51,5 +63,6 @@ void	free_list(t_cmd *list, char **av, int ac)
 		free(list);
 		list = box;
 	}
-	free_splt_bns(av, ac, 1);
+	free_stk_b(s_b);
+	free_stack_bns(s_a, av, ac, 1);
 }
