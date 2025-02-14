@@ -42,7 +42,7 @@ void	free_stack_bns(t_snode *stk, char **av, int ac, int i)
 
 void	free_list(t_cmd *list, char **av, int ac)
 {
-	t_cmd *box;
+	t_cmd	*box;
 
 	while (list)
 	{

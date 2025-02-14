@@ -91,7 +91,7 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 		ptr->ind = i;
 		if (lst_node)
 		{
-			ptr->prev  = lst_node;
+			ptr->prev = lst_node;
 			ptr->prev->nxt = ptr;
 		}
 		lst_node = ptr;

@@ -12,8 +12,6 @@
 
 #include "../include/push_swap.h"
 
-#include <stdio.h>
-
 int	main(int argc, char **argv)
 {
 	t_snode	*s_a;

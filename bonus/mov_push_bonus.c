@@ -16,6 +16,8 @@ void	push_bns(t_snode **src, t_snode **dst)
 {
 	t_snode	*box;
 
+	if (!*src)
+		return ;
 	box = *src;
 	*src = (*src)->nxt;
 	if (*src)
