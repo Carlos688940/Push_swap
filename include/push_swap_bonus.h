@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:14:31 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/15 11:44:31 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:51:37 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 typedef struct s_snode
 {
 	int				val;
-	int				cost;
-	struct s_snode	*tgt;	
 	struct s_snode	*nxt;
 	struct s_snode	*prev;
 }	t_snode;
