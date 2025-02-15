@@ -33,11 +33,11 @@ $(NAME): $(LIBFT) $(OBJS)
 
 
 test_s:
-	valgrind --leak-check=full --show-leak-kinds=all ./push_swap $$ARG  && ./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker_linux $$ARG
+	@valgrind --leak-check=full --show-leak-kinds=all ./push_swap $$ARG  && ./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker_linux $$ARG
 	@echo "$(YELLOW)School checker\n$(RESET)";
 	
 test_m:
-	valgrind --leak-check=full --show-leak-kinds=all ./push_swap $$ARG  && ./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker $$ARG
+	@valgrind --leak-check=full --show-leak-kinds=all ./push_swap $$ARG  && ./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker $$ARG
 	@echo "$(GREEN)My checker\n$(RESET)";
 
 bonus: $(NAME_BNS)

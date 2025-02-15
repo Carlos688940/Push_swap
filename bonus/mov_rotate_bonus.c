@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:46:35 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/15 11:43:58 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 14:49:05 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	rotate_bns(t_snode **stk)
 {
 	t_snode	*last;
 
-	if (!*stk)
+	if (!*stk || !(*stk)->nxt)
 		return ;
 	last = get_last_bns(*stk);
 	last->nxt = *stk;
