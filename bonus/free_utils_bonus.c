@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:25:23 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 14:25:55 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:29:04 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_stk_b(t_snode *s_b)
 {
-	t_snode *box;
+	t_snode		*box;
 
 	while (s_b)
 	{
@@ -39,7 +39,7 @@ void	free_splt_bns(char **av, int ac, int check)
 		print_error_bns();
 }
 
-void	free_stack_bns(t_snode *stk, char **av, int ac, int i)
+void	free_stk_a(t_snode *stk, char **av, int ac, int i)
 {
 	t_snode	*box;
 
@@ -52,7 +52,7 @@ void	free_stack_bns(t_snode *stk, char **av, int ac, int i)
 	free_splt_bns(av, ac, i);
 }
 
-void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a, t_snode *s_b)
+void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a)
 {
 	t_cmd	*box;
 
@@ -63,6 +63,8 @@ void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a, t_snode *s_b)
 		free(list);
 		list = box;
 	}
-	free_stk_b(s_b);
-	free_stack_bns(s_a, av, ac, 1);
+	if (s_a)
+		free_stk_a(s_a, av, ac, 1);
+	else
+		free_splt_bns(av, ac, 1);
 }

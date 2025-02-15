@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:42:21 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 11:38:03 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:12:45 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	stack_a_init(t_snode **s_a, char **av, int ac)
 	int		i;
 
 	i = -1;
+	lst_node = 0;
+	ptr = 0;
 	while (av[++i])
 	{
 		ptr = malloc(sizeof(t_snode));

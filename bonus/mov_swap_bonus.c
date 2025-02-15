@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:46:39 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 13:54:06 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:44:01 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	swap_bns(t_snode **stk)
 	if ((*stk)->nxt)
 		(*stk)->nxt->prev = box;
 	(*stk)->nxt = box;
-	define_index_bns(*stk);
 }
 
 void	sa(t_snode **stk)

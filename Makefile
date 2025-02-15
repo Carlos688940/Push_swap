@@ -12,7 +12,7 @@ SRCS = src/main.c src/check_input.c src/free_utils.c src/utils.c\
 
 BNS_SRC = bonus/main_bonus.c bonus/check_input_bonus.c bonus/free_utils_bonus.c bonus/utils_bonus.c\
 	  bonus/mov_push_bonus.c bonus/mov_reverse_rotate_bonus.c bonus/mov_rotate_bonus.c bonus/mov_swap_bonus.c\
-	  bonus/stack_tools_bonus.c bonus/stack_tools_2_bonus.c bonus/manage_moves_bonus.c
+	  bonus/stack_tools_bonus.c bonus/manage_moves_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BNS = $(BNS_SRC:.c=.o)

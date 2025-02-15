@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:46:30 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 11:39:30 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:43:54 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	rev_rotate_bns(t_snode **stk)
 	last->prev = NULL;
 	(*stk)->prev = last;
 	*stk = last;
-	define_index_bns(*stk);
 }
 
 void	rra(t_snode **stk)

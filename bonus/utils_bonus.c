@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:20:50 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/12 14:23:44 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:50:59 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,19 @@ int	ft_is_signal_bns(char c)
 {
 	if (c == '-' || c == '+')
 		return (1);
+	return (0);
+}
+
+int	cmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
 	return (0);
 }

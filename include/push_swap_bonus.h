@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:14:31 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 18:50:19 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:44:31 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 typedef struct s_snode
 {
 	int				val;
-	int				ind;
 	int				cost;
 	struct s_snode	*tgt;	
 	struct s_snode	*nxt;
@@ -41,8 +40,8 @@ char	**check_input_bns(char **av, int ac);
 /*                                 Free Utils                                 */
 /* -------------------------------------------------------------------------- */
 void	free_splt_bns(char **av, int ac, int check);
-void	free_stack_bns(t_snode *stk, char **av, int ac, int i);
-void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a, t_snode *s_b);
+void	free_stk_a(t_snode *stk, char **av, int ac, int i);
+void	free_list(t_cmd *list, char **av, int ac, t_snode *s_a);
 void	free_stk_b(t_snode *s_b);
 /* -------------------------------------------------------------------------- */
 /*                                    Utils                                   */
@@ -67,10 +66,9 @@ void	pa(t_snode **s_a, t_snode **s_b);
 /* -------------------------------------------------------------------------- */
 /*                                 Stack Tools                                */
 /* -------------------------------------------------------------------------- */
-void	define_index_bns(t_snode *stk);
 void	stack_a_init_bns(t_snode **s_a, char **av, int ac);
-int	creat_list(t_cmd **list);
 t_snode	*get_last_bns(t_snode *stk);
+int		creat_list(t_cmd **list);
 int		check_sort_bns(t_snode *stk_a);
 int		cmp(char *s1, char *s2);
 /* -------------------------------------------------------------------------- */

@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 12:18:07 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 18:49:41 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 10:42:55 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int	rotate_stks_bns(t_snode **s_a, t_snode **s_b, t_cmd **lst)
 								|| !cmp((*lst)->cmd, "rrr\n"))
 			moves_rev_rotate(s_a, s_b, (*lst)->cmd);
 		else
-			return (1);
+			return (0);
 		box = (*lst)->nxt;
 		free ((*lst)->cmd);
 		free (*lst);
 		*lst = box;
 	}
-	return (0);
+	return (1);
 }

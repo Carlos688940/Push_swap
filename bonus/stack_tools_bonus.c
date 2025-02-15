@@ -6,23 +6,11 @@
 /*   By: carlaugu <carlaugu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:01:37 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/02/13 18:30:09 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/02/15 11:51:09 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap_bonus.h"
-
-void	define_index_bns(t_snode *stk)
-{
-	int	i;
-
-	i = -1;
-	while (stk)
-	{
-		stk->ind = ++i;
-		stk = stk->nxt;
-	}
-}
 
 t_snode	*get_last_bns(t_snode *stk)
 {
@@ -46,18 +34,28 @@ int	check_sort_bns(t_snode *stk_a)
 	return (1);
 }
 
-int	cmp(char *s1, char *s2)
+int	creat_list(t_cmd **list)
 {
-	int	i;
+	char	*cmd;
+	t_cmd	*ptr;
+	t_cmd	*prev;
 
-	i = 0;
-	while (s1[i] || s2[i])
+	cmd = get_next_line(STDIN_FILENO);
+	prev = NULL;
+	while (cmd)
 	{
-		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		ptr = ft_calloc(1, sizeof(t_cmd));
+		if (!ptr)
+			return (0);
+		ptr->cmd = cmd;
+		if (!prev)
+			*list = ptr;
+		else
+			prev->nxt = ptr;
+		cmd = get_next_line(STDIN_FILENO);
+		prev = ptr;
 	}
-	return (0);
+	return (1);
 }
 
 void	stack_a_init_bns(t_snode **s_a, char **av, int ac)
@@ -78,10 +76,9 @@ void	stack_a_init_bns(t_snode **s_a, char **av, int ac)
 	{
 		ptr = malloc(sizeof(t_snode));
 		if (!ptr)
-			free_stack_bns(*s_a, av, ac, 1);
+			free_stk_a(*s_a, av, ac, 1);
 		ft_bzero(ptr, sizeof(t_snode));
 		ptr->val = ft_atoi(av[i]);
-		ptr->ind = i;
 		ptr->prev = lst_node;
 		ptr->prev->nxt = ptr;
 		lst_node = ptr;

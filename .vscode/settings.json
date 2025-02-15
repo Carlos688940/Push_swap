@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"type_traits": "c",
-		"utility": "c",
-		"MOVES.C": "cpp",
-		"push_swap.h": "c",
-		"push_swap_bonus.h": "c"
-	}
-}
