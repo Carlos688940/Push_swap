@@ -40,6 +40,8 @@ void	sb(t_snode **stk)
 
 void	ss(t_snode **s_a, t_snode **s_b)
 {
+	if (!*s_a || !(*s_a)->nxt || !*s_b || !(*s_b)->nxt)
+		return ;
 	swap_bns(s_a);
 	swap_bns(s_b);
 }

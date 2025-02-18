@@ -38,6 +38,8 @@ void	rb(t_snode **stk)
 
 void	rr(t_snode **s_a, t_snode **s_b)
 {
+	if (!*s_a || !(*s_a)->nxt || !*s_b || !(*s_b)->nxt)
+		return ;
 	rotate_bns(s_a);
 	rotate_bns(s_b);
 }
